@@ -32,7 +32,11 @@
         ],
         "react/react-in-jsx-scope": "off",
         "import/no-unresolved": "off",
-        "no-shadow": "off"
+        "no-shadow": "off",
+        "quotes": [
+            "error",
+            "double" // Allow double quotes
+        ]
     },
     "overrides": [
         {
