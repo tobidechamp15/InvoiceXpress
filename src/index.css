@@ -4,19 +4,85 @@
 
 body {
   margin: 0;
-
-  /* font-family: Gabarito; */
+  font-family: "Inter", sans-serif;
   letter-spacing: 0.05rem;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family:
-    source-code-pro,
-    Menlo,
-    Monaco,
-    Consolas,
-    "Courier New",
-    monospace;
+#root {
+  background-color: #1e1b18;
+}
+
+.nav-item {
+  cursor: pointer;
+  font-size: 16px;
+  font-style: normal;
+  color: #000;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.login-btn {
+  border-radius: 10px;
+  background: var(--Primary, #0000fe);
+  color: var(--Shade-White, #fff);
+  padding: 5px 30px;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.sign-up-btn {
+  border-radius: 10px;
+  border: 2px solid #d8315b;
+  color: #fffaff;
+  padding: 5px 30px;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.mob-hero {
+  width: 80px;
+  height: 64px;
+}
+
+.custom {
+  color: var(--Tetiary, #d8315b);
+  text-align: center;
+  font-family: "Anonymous Pro", monospace;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.print {
+  color: var(--Secondary, #0187fd);
+  text-align: center;
+  font-family: "Anonymous Pro", monospace;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.fast {
+  color: #0e935c;
+  text-align: center;
+  font-family: "Anonymous Pro", monospace;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.custom,
+.fast,
+.print {
+  text-align: center;
 }

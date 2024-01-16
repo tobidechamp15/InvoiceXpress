@@ -3,14 +3,12 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
-import "./App.css";
-
-import App from "./App";
+import Landing from "./Components/Landing";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Landing />,
   },
 ]);
 
