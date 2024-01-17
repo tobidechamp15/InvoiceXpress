@@ -86,3 +86,93 @@ body {
 .print {
   text-align: center;
 }
+
+.bg-side {
+  background: linear-gradient(13deg, #00a7e9 0.73%, #002589 70.97%);
+  border-radius: 0 100px 0 0;
+}
+
+.name {
+  color: var(--Primary, #0000fe);
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.description {
+  color: var(--Text, #fffaff);
+  text-align: center;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.input-name {
+  color: var(--white, #fff);
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.action-btn {
+  border-radius: 6px;
+  background: var(--Primary, #0000fe);
+  display: flex;
+  width: 171px;
+  padding: 16px 128px;
+  justify-content: center;
+  align-items: center;
+  color: var(--white, #fff);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.action-btn:hover {
+  border-radius: 6px;
+  background: #0000a2;
+  transition: 0.5s;
+}
+
+.input-text {
+  color: #000;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.link-action {
+  color: var(--Secondary, var(--white, #0187fd));
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration-line: underline;
+}
+
+.suggest-des {
+  color: var(--white, #fff);
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+@media (max-width: 768px) {
+  .description {
+    color: var(--Text, #fffaff);
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+}
