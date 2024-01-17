@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import heroImg from "../assets/hero image.svg";
 
 const Home = () => {
@@ -18,9 +19,12 @@ const Home = () => {
           <span>Receipts in a Snap!</span>
         </div>
         <div className="flex gap-5">
-          <span className="login-btn cursor-pointer  xsm:text-[11px]">
+          <Link
+            to="/login"
+            className="login-btn cursor-pointer  xsm:text-[11px]"
+          >
             Login
-          </span>
+          </Link>
           <span className="sign-up-btn cursor-pointer xsm:text-[11px]">
             Sign Up
           </span>
