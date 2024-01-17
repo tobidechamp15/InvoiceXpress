@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <div className="flex w-full xsm:h-screen">
-      <div className="h-screen w-[30%]  items-center justify-center bg-side hidden md:flex">
+      <div className=" w-[30%]  items-center justify-center bg-side hidden md:flex">
         <img src={logo} alt="" />
       </div>
       <div className="xsm:w-full md:m-20 mb-0 xsm:p-5 md:w-[70%] flex flex-col items-center mt-0 ">
@@ -23,8 +23,12 @@ const Login = () => {
             <span className="input-name">Password</span>
             <input type="password" className="form-control input-text" id="" />
           </div>
+          <div className=" flex-col flex gap-4 items-start w-full">
+            <span className="input-name">Confirm Password</span>
+            <input type="password" className="form-control input-text" id="" />
+          </div>
           <button type="submit" className="action-btn">
-            Login
+            Sign Up
           </button>
         </form>
         <div className="flex gap-4 md:w-3/5  border-white border-2 w-full text-white item-center p-3 my-5  rounded-[9995px] justify-center">
@@ -33,9 +37,9 @@ const Login = () => {
         </div>
         <div className="my-4 ">
           <span className="suggest-des">
-            Don&apos;t have an account?
-            <Link to="/signUp" className="link-action ms-2">
-              Sign Up
+            Already have an account?
+            <Link to="/login" className="link-action ms-2">
+              Sign In
             </Link>
           </span>
         </div>
