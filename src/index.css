@@ -122,7 +122,6 @@ body {
   border-radius: 6px;
   background: var(--Primary, #0000fe);
   display: flex;
-  width: 171px;
   padding: 16px 128px;
   justify-content: center;
   align-items: center;

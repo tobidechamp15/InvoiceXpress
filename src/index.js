@@ -5,6 +5,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import Landing from "./Components/Landing";
 import Login from "./Components/Login";
+import SignUp from "./Components/SignUp";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/signUp",
+    element: <SignUp />,
   },
 ]);
 
