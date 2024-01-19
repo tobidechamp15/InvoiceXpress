@@ -10,9 +10,9 @@ const Landing = () => (
   <div className="">
     <div className="container h-screen bg-[#1E1B18] text-white pb-11  justify-center items-center">
       <div className="flex md:justify-around  justify-between  items-center py-2 md:py-[67px]">
-        <span>
+        <Link to="/">
           <img src={logo} className="xsm:w-[80px] xsm:h-[64px]" />
-        </span>
+        </Link>
         <img className="flex  md:hidden" src={ham} alt="" />
         <div className="md:flex py-[14px] px-[48px] hidden bg-[#FFFAFF] rounded-[50px] gap-[15px] justify-center items-center">
           <span className="nav-item">Home</span>
