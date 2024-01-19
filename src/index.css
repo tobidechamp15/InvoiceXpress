@@ -174,4 +174,32 @@ body {
     font-weight: 700;
     line-height: normal;
   }
+
+  .input-name {
+    color: var(--white, #fff);
+
+    /* h2 */
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .suggest-des {
+    color: var(--white, #fff);
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .link-action {
+    color: var(--white, #fff);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline;
+  }
 }

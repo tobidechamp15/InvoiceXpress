@@ -1,12 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+
+//Routing
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
+//Linking bootstrap
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
+
+//Routes
 import Landing from "./Components/Landing";
 import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
+import CreateProfile from "./Components/CreateProfile";
+import GetStarted from "./Components/GetStarted";
 
+//Create a Router
 const router = createBrowserRouter([
   {
     path: "/",
@@ -19,6 +28,24 @@ const router = createBrowserRouter([
   {
     path: "/signUp",
     element: <SignUp />,
+  },
+  {
+    path: "/create-profile",
+    element: <CreateProfile />,
+  },
+  {
+    path: "/get-started",
+    element: <GetStarted />,
+    children: [
+      {
+        path: "/get-started/signUp",
+        element: <SignUp />,
+      },
+      {
+        path: "/get-started/create-profile",
+        element: <CreateProfile />,
+      },
+    ],
   },
 ]);
 
