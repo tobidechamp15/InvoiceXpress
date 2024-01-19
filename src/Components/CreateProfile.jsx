@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import logo from "../assets/mob-logo.svg";
-// import faImage from "../assets/faImage.svg";
-
+import axiosInstance from "./axios/axios";
 const CreateProfile = () => {
   //   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -36,18 +34,27 @@ const CreateProfile = () => {
   const handlePlan = (e) => {
     setPlan(e.target.value);
   };
-  //   const getValuesFromLocalStorage = () => {
-  //     // let company_name = localStorage.getItem('company_name');
-  //     let username = localStorage.getItem("username");
-  //     let email = localStorage.getItem("email");
-  //     let password = localStorage.getItem("password");
-  //   };
+  // let company_name = localStorage.getItem('company_name');
+  let username = localStorage.getItem("username");
+  let email = localStorage.getItem("email");
+  let password = localStorage.getItem("password");
 
-  //   useEffect(() => {
-  //     // Your side effect or data fetching logic goes here
-  //     getValuesFromLocalStorage();
-  //   }, []);
-
+  const handleCreate = () => {
+    // console.log(`Creating a new Company with name: ${companyName}`);
+    axiosInstance
+      .post("/signup", {
+        username,
+        email,
+        password,
+        companyName,
+        address,
+        phoneNumber,
+        plan,
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
+  };
   return (
     <div className="flex w-full ">
       <div className="xsm:w-full md:m-20 mb-0 xsm:p-5 md:w-[100%] flex flex-col items-center mt-0 ">
@@ -98,11 +105,9 @@ const CreateProfile = () => {
               <option value="Plan 3">Plan 3</option>
             </select>
           </div>
-          <Link to="/dashboard">
-            <button type="submit" className="action-btn my-[12px]">
-              Create
-            </button>
-          </Link>
+          <button onClick={handleCreate} className="action-btn my-[12px]">
+            Create
+          </button>
         </form>
       </div>
     </div>

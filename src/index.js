@@ -14,6 +14,7 @@ import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
 import CreateProfile from "./Components/CreateProfile";
 import GetStarted from "./Components/GetStarted";
+import SetUp from "./Components/SetUp";
 
 //Create a Router
 const router = createBrowserRouter([
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: "/create-profile",
     element: <CreateProfile />,
+  },
+  {
+    path: "/setUp",
+    element: <SetUp />,
   },
   {
     path: "/get-started",
