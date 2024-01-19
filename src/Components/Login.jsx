@@ -1,9 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/logo.svg";
 import google from "../assets/google.svg";
 import { Link } from "react-router-dom";
+import axiosInstance from "./axios/axios";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log({
+      email,
+      password,
+    });
+    axiosInstance
+      .post("/signIn", {
+        email,
+        password,
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="flex w-full xsm:h-screen">
       <Link
@@ -17,14 +47,27 @@ const Login = () => {
           <span className="description">Sign in to</span>
           <span className="name">InvoiceXpress</span>
         </div>
-        <form className="xsm:w-full md:w-3/5 mt-16 flex flex-col gap-12 items-center justify-center">
+        <form
+          onSubmit={handleSubmit}
+          className="xsm:w-full md:w-3/5 mt-16 flex flex-col gap-12 items-center justify-center"
+        >
           <div className=" flex-col flex gap-4 items-start w-full">
             <span className="input-name">Email</span>
-            <input type="email" className="form-control input-text" id="" />
+            <input
+              type="email"
+              className="form-control input-text"
+              value={email}
+              onChange={handleEmail}
+            />
           </div>
           <div className=" flex-col flex gap-4 items-start w-full">
             <span className="input-name">Password</span>
-            <input type="password" className="form-control input-text" id="" />
+            <input
+              type="password"
+              className="form-control input-text"
+              value={password}
+              onChange={handlePassword}
+            />
           </div>
           <button type="submit" className="action-btn">
             Login

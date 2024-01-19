@@ -20,12 +20,7 @@ const SignUp = () => {
   const handleUsername = (e) => {
     setUsername(e.target.value);
   };
-  console.log({
-    username: username,
-    email: email,
-    password: password,
-    confirm_password: confirmPassword,
-  });
+
   const storeValuesInLocalStorage = () => {
     localStorage.setItem(
       "user",
@@ -36,10 +31,6 @@ const SignUp = () => {
       })
     );
   };
-
-  //   if (confirmPassword === password) {
-
-  //   }
 
   return (
     <div className="flex w-full ">
