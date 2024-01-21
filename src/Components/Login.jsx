@@ -28,6 +28,8 @@ const Login = () => {
       })
       .then((res) => {
         console.log(res.data);
+        const data = res.data;
+        localStorage.setItem("userID", data.userId);
       })
       .catch((error) => {
         console.log(error);
