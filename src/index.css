@@ -165,6 +165,69 @@ body {
   line-height: normal;
 }
 
+.active-tab {
+  color: var(--Color-White, var(--white, #fff));
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  background-color: #0000a2;
+}
+
+.dropdown-transition {
+  transition-property: max-height, opacity;
+  transition-duration: 0.5s; /* Adjust the duration as needed */
+  transition-timing-function: ease-in-out;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+/* Apply transition when the dropdown is open */
+.dropdown-open {
+  transition-duration: 0.5s; /* Adjust the duration as needed */
+  transition-timing-function: ease-in-out;
+  background: rgb(226, 223, 235);
+  opacity: 1;
+}
+
+.dropdown-open a {
+  display: block;
+  color: #7482f6;
+  text-decoration: none;
+  padding: 10px 10px;
+  transition: background-color 0.3s;
+}
+
+.icon {
+  transition: transform 0.5s ease;
+  cursor: pointer;
+
+  /* transform: rotate(90deg); */
+}
+
+.dropdown-open a:hover {
+  /* background-color: #7482f6; Darker blue for the active link */
+  font-weight: bold;
+  transition: 0.5s;
+  color: white;
+  cursor: pointer;
+}
+
+.sideBar-tabs {
+  transition: ease-in-out 0.5s;
+  border-bottom: none !important;
+  width: 100% !important;
+}
+
+.nav-title {
+  color: var(--Text, #fffaff);
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
 @media (max-width: 768px) {
   .description {
     color: var(--Text, #fffaff);
@@ -201,5 +264,47 @@ body {
     font-weight: 400;
     line-height: normal;
     text-decoration-line: underline;
+  }
+
+  .nav-title {
+    color: var(--Text, #fffaff);
+
+    /* H1 */
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .export {
+    color: var(--Text, #fffaff);
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 12.077px; /* 150.968% */
+  }
+
+  .sales {
+    color: var(--Text, #fffaff);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .summary {
+    color: var(--text-2, #a3a3a3);
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .gen-rec {
+    color: var(--text-2, #a3a3a3);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
   }
 }

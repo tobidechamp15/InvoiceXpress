@@ -13,8 +13,9 @@ import Landing from "./Components/Landing";
 import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
 import CreateProfile from "./Components/CreateProfile";
-import GetStarted from "./Components/GetStarted";
 import SetUp from "./Components/SetUp";
+import Dashboard from "./Components/Dashboard";
+import AppInfo from "./Components/AppInfo";
 
 //Create a Router
 const router = createBrowserRouter([
@@ -39,16 +40,12 @@ const router = createBrowserRouter([
     element: <SetUp />,
   },
   {
-    path: "/get-started",
-    element: <GetStarted />,
+    path: "/dashboard",
+    element: <Dashboard />,
     children: [
       {
-        path: "/get-started/signUp",
-        element: <SignUp />,
-      },
-      {
-        path: "/get-started/create-profile",
-        element: <CreateProfile />,
+        path: "/dashboard/information",
+        element: <AppInfo />,
       },
     ],
   },
