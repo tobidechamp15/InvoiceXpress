@@ -6,6 +6,7 @@ body {
   margin: 0;
   font-family: "Inter", sans-serif;
   letter-spacing: 0.05rem;
+  color: #fffaff;
 }
 
 #root {
@@ -228,7 +229,75 @@ body {
   line-height: normal;
 }
 
+.side-shadow {
+  filter: drop-shadow(4px 0 4px rgba(0, 0, 0, 0.5));
+}
+
+.top-bar {
+  background: var(--Background, #1e1b18);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.item-input {
+  color: #000;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+} /* Receipt.css */
+.receipt-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.customer-info,
+.payment-info,
+.items-list,
+.total-amount {
+  margin-bottom: 20px;
+}
+
+.items-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.items-list li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.items-list span {
+  flex: 1;
+}
+
+.total-amount p {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.btn-gen {
+  color: var(--Text, #fffaff);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
 @media (max-width: 768px) {
+  .item-input {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
   .description {
     color: var(--Text, #fffaff);
     text-align: center;
@@ -301,10 +370,22 @@ body {
   }
 
   .gen-rec {
-    color: var(--text-2, #a3a3a3);
-    font-size: 16px;
+    color: var(--Text, #fffaff);
+    font-size: 12px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+  }
+}
+
+.gen-rec-cont {
+  border-radius: 4px;
+  background: var(--Primary, #0000fe);
+  padding: 8px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 962px) {
+  .fir-cont {
+    width: 100% !important;
   }
 }

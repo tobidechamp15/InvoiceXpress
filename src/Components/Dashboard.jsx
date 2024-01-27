@@ -18,9 +18,14 @@ const Dashboard = () => {
   const [user, setUser] = useState({});
 
   const loggedInUser = localStorage.getItem("userID");
+  const userToken = localStorage.getItem("userToken");
   const getAllUsers = () => {
     axiosInstance
-      .get("/getUsers")
+      .get("/getUsers", {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      })
       .then((response) => {
         console.log(response.data.data);
         const users = response.data.data;
@@ -69,11 +74,11 @@ const Dashboard = () => {
       items: [
         {
           item: "Add Products",
-          linkTo: "/invoicer/home",
+          linkTo: "/dashboard/information",
         },
         {
           item: " Products",
-          linkTo: "/invoicer/home",
+          linkTo: "/dashboard/information",
         },
       ],
     },
@@ -99,13 +104,13 @@ const Dashboard = () => {
   return (
     <section className="w-100">
       <section
-        className={`flex w-[255px]   bg-[#1E1B18]  flex-col h-screen shadow-lg z-50 fixed transition-all ease-in-out duration-700 ${
+        className={`flex w-[255px]   bg-[#1E1B18]  flex-col h-screen   side-shadow z-50 fixed transition-all ease-in-out duration-700 ${
           sidebarOpen ? "left-0  " : "xsm:-left-[255px]"
         }`}
         ref={sidebarRef}
         id="side-bar"
       >
-        <div className="w-100 flex flex-col self-center gap-2 h-full bg-black">
+        <div className="w-100 flex flex-col self-center gap-2 h-full ">
           <Link to="/" className="flex items-center justify-center">
             <img src={logo} alt="" />
           </Link>
@@ -126,7 +131,7 @@ const Dashboard = () => {
                 Dashboard
               </NavLink>
               <NavLink
-                to=""
+                to="/dashboard/generate-receipt"
                 className={({ isActive }) =>
                   `${
                     isActive ? "active-tab " : "text-white "
@@ -206,7 +211,7 @@ const Dashboard = () => {
         </div>
       </section>
       <section className=" flex flex-col  md:ms-[255px] ">
-        <div className="flex w-100 b p-3 justify-between top-bar shadow-xl">
+        <div className="flex w-100 b md:py-10 py-3 items-center justify-between top-bar px-9">
           <FontAwesomeIcon
             icon={faBars}
             onClick={toggleSidebar}

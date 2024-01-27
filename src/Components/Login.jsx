@@ -7,11 +7,16 @@ import axiosInstance from "./axios/axios";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
   const handleEmail = (e) => {
+    setError(false);
+
     setEmail(e.target.value);
   };
   const handlePassword = (e) => {
+    setError(false);
+
     setPassword(e.target.value);
   };
 
@@ -30,9 +35,12 @@ const Login = () => {
         console.log(res.data);
         const data = res.data;
         localStorage.setItem("userID", data.userId);
+        localStorage.setItem("userToken", data.token);
+        window.location.href = "/dashboard/information";
       })
       .catch((error) => {
         console.log(error);
+        setError(true);
       });
   };
 
@@ -71,6 +79,11 @@ const Login = () => {
               onChange={handlePassword}
             />
           </div>
+          {error ? (
+            <div className="text-red-500 w-full">
+              Incorrect email or password
+            </div>
+          ) : null}
           <button type="submit" className="action-btn">
             Login
           </button>
@@ -82,7 +95,7 @@ const Login = () => {
         <div className="my-4 ">
           <span className="suggest-des">
             Don&apos;t have an account?
-            <Link to="/get-started/signUp" className="link-action ms-2">
+            <Link to="/setUp" className="link-action ms-2">
               Sign Up
             </Link>
           </span>

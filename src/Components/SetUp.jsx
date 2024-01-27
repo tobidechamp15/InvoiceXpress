@@ -85,6 +85,10 @@ const SetUp = () => {
         <img src={logo} alt="" />
       </Link>
       <div className="md:w-[70%] w-full">
+        <div className="flex  flex-col gap-4 items-center mt-[76px] mb-0">
+          {/* <span className="description">Sign in to</span> */}
+          <span className="name">InvoiceXpress</span>
+        </div>
         {createProfile ? (
           <div className="flex w-full ">
             <div className="xsm:w-full md:mx-20 mb-0 xsm:px-5 md:w-[100%] flex flex-col items-center mt-0 ">
@@ -93,12 +97,12 @@ const SetUp = () => {
               </div>
               <div className="flex  flex-col gap-4 items-center mt-[23px] mb-0">
                 <span className="description">Sign up </span>
-                {/* <span className="name">InvoiceXpress</span> */}
               </div>
               <form className="xsm:w-full md:w-3/5 mt-4 md:mt-16 flex flex-col md:gap-12 gap-4 items-center justify-center">
                 <div className=" flex-col flex gap-4 items-start w-full">
                   <span className="input-name">Username</span>
                   <input
+                    required
                     type="text"
                     className="form-control input-text"
                     value={username}
@@ -108,6 +112,7 @@ const SetUp = () => {
                 <div className=" flex-col flex gap-4 items-start w-full">
                   <span className="input-name">Email</span>
                   <input
+                    required
                     type="email"
                     className="form-control input-text"
                     value={email}
@@ -117,6 +122,7 @@ const SetUp = () => {
                 <div className=" flex-col flex gap-4 items-start w-full">
                   <span className="input-name">Password</span>
                   <input
+                    required
                     type="password"
                     className="form-control input-text"
                     value={password}
@@ -133,10 +139,7 @@ const SetUp = () => {
                   />
                 </div> */}
               </form>
-              {/* <div className="flex gap-4 md:w-3/5  border-white border-2 w-full text-white item-center p-3 my-5  rounded-[9995px] justify-center">
-          <img src={google} alt="" />
-          <span>Sign in with Google</span>
-        </div> */}
+
               <div className="md:my-[74px] my-4">
                 <span className="suggest-des">
                   Already have an account?
@@ -150,16 +153,17 @@ const SetUp = () => {
         ) : (
           <div className=" w-full flex flex-col ">
             <div className="xsm:w-full  mb-0 xsm:p-5 md:w-[100%] flex flex-col items-center mt-0    ">
-              <div className="flex self-start md:hidden">
+              {/* <div className="flex self-start md:hidden">
                 <img src={logo} className="" />
-              </div>
+              </div> */}
               <div className="flex  flex-col gap-4 items-center  mb-0">
                 <span className="description">Set up your profile</span>
               </div>
-              <form className="xsm:w-full md:w-3/5 mt-16 flex flex-col gap-3 md:gap-10 items-center justify-center">
+              <form className="xsm:w-full md:w-3/5 mt-16 flex flex-col xsm:gap-3 md:gap-10 items-center justify-center">
                 <div className=" flex-col flex gap-4 items-start w-full">
                   <span className="input-name">Company&apos;s Name </span>
                   <input
+                    required
                     type="text"
                     className="form-control input-text"
                     value={companyName}
@@ -169,6 +173,7 @@ const SetUp = () => {
                 <div className=" flex-col flex gap-4 items-start w-full">
                   <span className="input-name">Address</span>
                   <input
+                    required
                     type="text"
                     className="form-control input-text"
                     value={address}
@@ -178,6 +183,7 @@ const SetUp = () => {
                 <div className=" flex-col flex gap-4 items-start w-full">
                   <span className="input-name">Phone Number</span>
                   <input
+                    required
                     type="number"
                     className="form-control input-text"
                     value={phoneNo}
@@ -187,6 +193,7 @@ const SetUp = () => {
                 <div className="w-full flex flex-col gap-4 text-start input-name">
                   <label htmlFor="plan">Select your plan</label>
                   <select
+                    required
                     id="plan"
                     value={plan}
                     onChange={handlePlan}
@@ -198,7 +205,11 @@ const SetUp = () => {
                     <option value="Plan3">Plan 3</option>
                   </select>
                 </div>
-                <button onClick={handleCreate} className="action-btn my-[12px]">
+                <button
+                  onClick={handleCreate}
+                  type="submit"
+                  className="action-btn my-[12px]"
+                >
                   Create
                 </button>
               </form>
