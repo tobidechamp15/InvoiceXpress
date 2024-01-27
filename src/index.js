@@ -16,6 +16,8 @@ import CreateProfile from "./Components/CreateProfile";
 import SetUp from "./Components/SetUp";
 import Dashboard from "./Components/Dashboard";
 import AppInfo from "./Components/AppInfo";
+// import GenerateReceipt from "./Components/GenerateReceipt";
+import Recgen from "./Components/Recgen";
 
 //Create a Router
 const router = createBrowserRouter([
@@ -46,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/information",
         element: <AppInfo />,
+      },
+      {
+        path: "/dashboard/generate-receipt",
+        element: <Recgen />,
       },
     ],
   },
