@@ -2,7 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faChevronRight,
+  faGear,
+} from "@fortawesome/free-solid-svg-icons";
 import dashIcon from "../assets/dashIcon.svg";
 import receiptIcon from "../assets/ReceiptIcon.svg";
 import report from "../assets/report.svg";
@@ -27,7 +31,6 @@ const Dashboard = () => {
         },
       })
       .then((response) => {
-        console.log(response.data.data);
         const users = response.data.data;
         const loggedInUserInfo = users.find(
           (data) => data._id === loggedInUser
@@ -78,20 +81,21 @@ const Dashboard = () => {
         },
         {
           item: " Products",
-          linkTo: "/dashboard/information",
+          linkTo: "/dashboard/add-products",
         },
       ],
     },
     {
+      icon: faGear,
       title: "Profile Settings",
       items: [
         {
           item: "Create Profile",
-          linkTo: "/invoicer/settings",
+          linkTo: "/",
         },
         {
           item: "Update Profile",
-          linkTo: "/invoicer/home",
+          linkTo: "/",
         },
         {
           item: "Sign In",
@@ -123,7 +127,7 @@ const Dashboard = () => {
                     isActive
                       ? "active-tab"
                       : "text-blue-500 hover:text-white hover:bg-blue-600"
-                  } sideBar-tabs flex gap-2 items-center justify-center rounded-lg py-2
+                  } px-2 sideBar-tabs flex gap-2 items-center just rounded-lg py-2
               `
                 }
               >
@@ -135,7 +139,7 @@ const Dashboard = () => {
                 className={({ isActive }) =>
                   `${
                     isActive ? "active-tab " : "text-white "
-                  } sideBar-tabs flex gap-2 items-center justify-center rounded-lg py-2`
+                  } px-2 sideBar-tabs flex gap-2 items-center just  rounded-lg py-2`
                 }
               >
                 <img src={receiptIcon} alt="" />
@@ -145,23 +149,23 @@ const Dashboard = () => {
                 to="/dashboard/settings"
                 className={({ isActive }) =>
                   `${
-                    isActive ? "active-tab" : "text-blue-500 "
-                  } sideBar-tabs flex gap-2 items-center justify-center rounded-lg py-2`
+                    isActive ? "active-tab" : "text-white "
+                  } px-2 sideBar-tabs flex gap-2 items-center justif-center rounded-lg py-2`
                 }
               >
                 <img src={report} alt="" />
-                <span className="-">Transaction Report</span>
+                Transaction Report
               </NavLink>
               <ul className="list mt-2 list-non w-full flex gap-2 flex-col items-center   transition-all ease-in-out duration-500">
                 {dropdownData.map((dropdown, index) => (
                   <li
-                    className="w-full flex flex-col hm text-blue-500  hover:text-white hover:bg-blue-500"
+                    className="w-full flex flex-col hm text-white  hover:text-white "
                     key={index}
                   >
                     <div
                       className={`${
                         activeDropdown === index
-                          ? "bg-blue-500 text-white w-100 "
+                          ? "bg text-white w-100 rounded px-2"
                           : ""
                       } flex  items-center justify-between w-full  transition-all ease-in-out duration-500 cursor-pointer`}
                       onClick={() => handleDropdownClick(index)}
@@ -169,19 +173,27 @@ const Dashboard = () => {
                       <span
                         className={
                           activeDropdown === index
-                            ? "bg-blue-500 text-white w-100 p-[5%] cursor-pointer flex gap-2"
-                            : "p-[5%] cursor-pointer flex gap-2"
+                            ? "b text-white w-100 p-2 cursor-pointer  flex items-center gap-2"
+                            : "p-2 cursor-pointer flex gap-2 items-center "
                         }
                       >
-                        <img src={dropdown.logo} alt="" />
+                        {dropdown.logo ? (
+                          <img src={dropdown.logo} alt="" />
+                        ) : null}
+                        {
+                          <FontAwesomeIcon
+                            icon={dropdown.icon}
+                            className="text-xl"
+                          />
+                        }
                         {dropdown.title}
                       </span>
                       <FontAwesomeIcon
                         icon={faChevronRight}
                         className={`icon ${
                           activeDropdown === index
-                            ? "rotate p-[5%]  text-white  text-justify"
-                            : " p-[5%] "
+                            ? "rotate p-2  text-white text-justify"
+                            : " p-2 "
                         }`}
                       />
                     </div>

@@ -11,13 +11,12 @@ import "./index.css";
 //Routes
 import Landing from "./Components/Landing";
 import Login from "./Components/Login";
-import SignUp from "./Components/SignUp";
-import CreateProfile from "./Components/CreateProfile";
 import SetUp from "./Components/SetUp";
 import Dashboard from "./Components/Dashboard";
 import AppInfo from "./Components/AppInfo";
 // import GenerateReceipt from "./Components/GenerateReceipt";
 import Recgen from "./Components/Recgen";
+import Products from "./Components/Products";
 
 //Create a Router
 const router = createBrowserRouter([
@@ -28,14 +27,6 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
-  },
-  {
-    path: "/signUp",
-    element: <SignUp />,
-  },
-  {
-    path: "/create-profile",
-    element: <CreateProfile />,
   },
   {
     path: "/setUp",
@@ -52,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/generate-receipt",
         element: <Recgen />,
+      },
+      {
+        path: "/dashboard/add-products",
+        element: <Products />,
       },
     ],
   },
