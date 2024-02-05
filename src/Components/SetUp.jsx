@@ -9,7 +9,7 @@ const SetUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   //   const [confirmPassword, setConfirmPassword] = useState("");
-  const [createProfile, setCreateProfile] = useState(false);
+  const [createProfile, setCreateProfile] = useState(true);
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -129,15 +129,6 @@ const SetUp = () => {
                     onChange={handlePassword}
                   />
                 </div>
-                {/* <div className=" flex-col flex gap-4 items-start w-full">
-                  <span className="input-name">Confirm Password</span>
-                  <input
-                    type="password"
-                    className="form-control input-text"
-                    value={confirmPassword}
-                    onChange={handleConfirmPassword}
-                  />
-                </div> */}
               </form>
 
               <div className="md:my-[74px] my-4">
