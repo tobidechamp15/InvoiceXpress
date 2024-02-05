@@ -188,13 +188,14 @@ body {
 .dropdown-open {
   transition-duration: 0.5s; /* Adjust the duration as needed */
   transition-timing-function: ease-in-out;
+
   /* background-color: #0000a2; */
   opacity: 1;
 }
 
 .dropdown-open a {
   display: block;
-  color: #ffffff;
+  color: #fff;
   text-decoration: none;
   padding: 10px 10px;
   transition: background-color 0.3s;
