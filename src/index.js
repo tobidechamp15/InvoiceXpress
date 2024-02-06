@@ -17,6 +17,7 @@ import AppInfo from "./Components/AppInfo";
 import Recgen from "./Components/Recgen";
 import Products from "./Components/Products";
 import ChangePassword from "./Components/ChangePassword";
+import AddProducts from "./Components/AddProducts";
 
 //Create a Router
 const router = createBrowserRouter([
@@ -45,8 +46,12 @@ const router = createBrowserRouter([
         element: <Recgen />,
       },
       {
-        path: "/dashboard/add-products",
+        path: "/dashboard/products",
         element: <Products />,
+      },
+      {
+        path: "/dashboard/add-products",
+        element: <AddProducts />,
       },
       {
         path: "/dashboard/changePassword",

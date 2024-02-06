@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axiosInstance from "./axios/axios";
 
 const Products = () => {
@@ -34,14 +35,14 @@ const Products = () => {
     <div className="text-white container-fluid h-screen my-4 ">
       <div className="justify-between items-center flex md:mx-[24px]">
         <span className="nav-title">Products</span>
-        <div
-          to="/dashboard/generate-receipt"
+        <Link
+          to="/dashboard/add-products"
           //   onClick={setShowModal(true)}
           className="flex gap-2 items-center gen-rec-cont"
         >
           <img src="" alt="" />
           <span className="gen-rec">Add Products</span>
-        </div>
+        </Link>
       </div>
       {userProducts.map((pro, index) => (
         <div key={index}>
