@@ -74,11 +74,11 @@ const Dashboard = () => {
       items: [
         {
           item: "Add Products",
-          linkTo: "/dashboard/information",
+          linkTo: "/dashboard/add-products",
         },
         {
           item: " Products",
-          linkTo: "/dashboard/add-products",
+          linkTo: "/dashboard/products",
         },
       ],
     },
@@ -162,7 +162,7 @@ const Dashboard = () => {
                     <div
                       className={`${
                         activeDropdown === index
-                          ? "bg text-white w-100 rounded px-2"
+                          ? "bg text-white w-100 rounded "
                           : ""
                       } flex  items-center justify-between w-full  transition-all ease-in-out duration-500 cursor-pointer`}
                       onClick={() => handleDropdownClick(index)}
