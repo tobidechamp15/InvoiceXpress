@@ -24,13 +24,16 @@ const Products = () => {
             dataList.push(datas[i]);
           }
         }
+        console.log(dataList);
+        dataList.sort((a, b) => a.productID - b.productID);
+
         setUserProducts(dataList);
       });
   };
 
   useEffect(() => {
     getAllProduct();
-  }, [userProducts]);
+  }, []);
   return (
     <div className="text-white container-fluid h-screen my-4 ">
       <div className="justify-between items-center flex md:mx-[24px]">
@@ -44,11 +47,43 @@ const Products = () => {
           <span className="gen-rec">Add Products</span>
         </Link>
       </div>
-      {userProducts.map((pro, index) => (
-        <div key={index}>
-          <span className="text-white">{pro.productName}</span>
+      <div className="flex flex-col gap-3 my-3">
+        <div className="flex justify-around  rounded-lg bg-white p-4">
+          <div className="text-black products  w-full  flex items-center justify-center">
+            Product Name
+          </div>
+          <div className="text-black products  w-full  flex items-center justify-center">
+            Quantity
+          </div>
+          <div className="text-black products  w-full  flex items-center justify-center">
+            Product ID
+          </div>
+          <div className="text-black products  w-full  flex items-center justify-center">
+            Price
+          </div>
         </div>
-      ))}
+        <div>
+          {userProducts.map((pro, index) => (
+            <div
+              key={index}
+              className="flex justify-around  bg-white border-b border-[#A3A3A3] p-3"
+            >
+              <div className="text-black products bg-white w-full  flex items-center justify-center">
+                {pro.productName}
+              </div>
+              <div className="text-black products bg-white w-full  flex items-center justify-center">
+                {pro.quantity}
+              </div>
+              <div className="text-black products bg-white w-full  flex items-center justify-center">
+                {pro.productID}
+              </div>
+              <div className="text-black products bg-white w-full  flex items-center justify-center">
+                {pro.price}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
