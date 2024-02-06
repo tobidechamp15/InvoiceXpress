@@ -36,7 +36,7 @@ const Login = () => {
         const data = res.data;
         localStorage.setItem("userID", data.userId);
         localStorage.setItem("userToken", data.token);
-        // window.location.href = "/dashboard/information";
+        window.location.href = "/dashboard/information";
       })
       .catch((error) => {
         console.log(error);

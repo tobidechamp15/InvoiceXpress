@@ -14,9 +14,9 @@ import Login from "./Components/Login";
 import SetUp from "./Components/SetUp";
 import Dashboard from "./Components/Dashboard";
 import AppInfo from "./Components/AppInfo";
-// import GenerateReceipt from "./Components/GenerateReceipt";
 import Recgen from "./Components/Recgen";
 import Products from "./Components/Products";
+import ChangePassword from "./Components/ChangePassword";
 
 //Create a Router
 const router = createBrowserRouter([
@@ -47,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/add-products",
         element: <Products />,
+      },
+      {
+        path: "/dashboard/changePassword",
+        element: <ChangePassword />,
       },
     ],
   },

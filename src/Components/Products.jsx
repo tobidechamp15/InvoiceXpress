@@ -7,7 +7,7 @@ const Products = () => {
   const [userProducts, setUserProducts] = useState([]);
   const userToken = localStorage.getItem("userToken");
   const userID = localStorage.getItem("userID");
-  console.log(userID);
+  //   console.log(userID);
   const getAllProduct = () => {
     axiosInstance
       .get("/getAllProduct", {
@@ -16,10 +16,6 @@ const Products = () => {
         },
       })
       .then((response) => {
-        // const userID = localStorage.getItem("userID");
-
-        // console.log(response.data);
-
         const datas = response.data.data;
         let dataList = [];
         for (let i in datas) {
@@ -28,8 +24,6 @@ const Products = () => {
           }
         }
         setUserProducts(dataList);
-        console.log("userProducts,", userProducts);
-        // console.log("dadata:", dataList);
       });
   };
 
