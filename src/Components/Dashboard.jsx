@@ -13,6 +13,7 @@ import report from "../assets/report.svg";
 import products from "../assets/products.svg";
 import axiosInstance from "./axios/axios";
 import userAvatar from "../assets/user.svg";
+import headers from "./headers/headers";
 
 // import Logout from "./Logout";
 
@@ -22,14 +23,10 @@ const Dashboard = () => {
   const [user, setUser] = useState({});
 
   const loggedInUser = localStorage.getItem("userID");
-  const userToken = localStorage.getItem("userToken");
+  // const userToken = localStorage.getItem("userToken");
   const getAllUsers = () => {
     axiosInstance
-      .get("/getUsers", {
-        headers: {
-          Authorization: `Bearer ${userToken}`,
-        },
-      })
+      .get("/getUsers", { headers })
       .then((response) => {
         const users = response.data.data;
         const loggedInUserInfo = users.find(
@@ -90,8 +87,8 @@ const Dashboard = () => {
       title: "Profile Settings",
       items: [
         {
-          item: "Create Profile",
-          linkTo: "/",
+          item: "Change Password",
+          linkTo: "/dashboard/changePassword",
         },
         {
           item: "Update Profile",
