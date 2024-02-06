@@ -73,12 +73,16 @@ const Dashboard = () => {
       title: "Products",
       items: [
         {
+          item: " Products",
+          linkTo: "/dashboard/products",
+        },
+        {
           item: "Add Products",
           linkTo: "/dashboard/add-products",
         },
         {
-          item: " Products",
-          linkTo: "/dashboard/products",
+          item: "Delete Products",
+          linkTo: "/dashboard/delete-products",
         },
       ],
     },
