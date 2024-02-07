@@ -14,11 +14,12 @@ import Login from "./Components/Login";
 import SetUp from "./Components/SetUp";
 import Dashboard from "./Components/Dashboard";
 import AppInfo from "./Components/AppInfo";
-import Recgen from "./Components/Recgen";
+// import Recgen from "./Components/Recgen";
 import Products from "./Components/Products";
 import ChangePassword from "./Components/ChangePassword";
 import AddProducts from "./Components/AddProducts";
 import DeleteProducts from "./Components/DeleteProducts";
+import ReceiptTest from "./Components/ReceiptTest";
 
 //Create a Router
 const router = createBrowserRouter([
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
     element: <SetUp />,
   },
   {
+    path: "/rec-test",
+    element: <ReceiptTest />,
+  },
+  {
     path: "/dashboard",
     element: <Dashboard />,
     children: [
@@ -44,7 +49,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/generate-receipt",
-        element: <Recgen />,
+        element: <ReceiptTest />,
       },
       {
         path: "/dashboard/products",

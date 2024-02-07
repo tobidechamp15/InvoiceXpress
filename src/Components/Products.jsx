@@ -1,39 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axiosInstance from "./axios/axios";
+import headers from "./headers/headers";
 
 const Products = () => {
   //   const [showModal, setShowModal] = useState(false);
 
   const [userProducts, setUserProducts] = useState([]);
-  const userToken = localStorage.getItem("userToken");
-  const userID = localStorage.getItem("userID");
+  //   const userToken = localStorage.getItem("userToken");
+  //   const userID = localStorage.getItem("userID");
   //   console.log(userID);
   const getAllProduct = () => {
     axiosInstance
-      .get("/getAllProduct", {
-        headers: {
-          Authorization: `Bearer ${userToken}`,
-        },
-      })
+      .get("/getAllProduct", { headers })
       .then((response) => {
+        // console.log(response.data);
         const datas = response.data.data;
-        let dataList = [];
-        for (let i in datas) {
-          if (datas[i].user === userID) {
-            dataList.push(datas[i]);
-          }
-        }
-        console.log(dataList);
-        dataList.sort((a, b) => a.productID - b.productID);
 
-        setUserProducts(dataList);
-      });
+        datas.sort((a, b) => a.productID - b.productID);
+
+        setUserProducts(datas);
+      })
+      .catch((err) => console.error(err));
   };
 
   useEffect(() => {
     getAllProduct();
-  }, []);
+  }, [userProducts]);
   return (
     <div className="text-white container-fluid h-screen my-4 ">
       <div className="justify-between items-center flex md:mx-[24px]">
