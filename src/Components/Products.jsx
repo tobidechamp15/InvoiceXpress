@@ -21,7 +21,7 @@ const Products = () => {
 
         setUserProducts(datas);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err.response));
   };
 
   useEffect(() => {
