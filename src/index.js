@@ -20,6 +20,7 @@ import ChangePassword from "./Components/ChangePassword";
 import AddProducts from "./Components/AddProducts";
 import DeleteProducts from "./Components/DeleteProducts";
 import ReceiptTest from "./Components/ReceiptTest";
+import InvoiceHistory from "./Components/InvoiceHistory";
 
 //Create a Router
 const router = createBrowserRouter([
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/generate-receipt",
         element: <ReceiptTest />,
+      },
+      {
+        path: "/dashboard/transaction-report",
+        element: <InvoiceHistory />,
       },
       {
         path: "/dashboard/products",

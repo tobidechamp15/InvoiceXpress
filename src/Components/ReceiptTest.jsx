@@ -23,8 +23,8 @@ const ReceiptTest = () => {
         quantity: productInput.quantity,
       };
       setProducts((prevProducts) => [...prevProducts, productWithQuantity]);
-      setProductInput({ id: "", quantity: "" }); // Clear input fields after fetching
       console.log(products);
+      setProductInput({ id: "", quantity: "" }); // Clear input fields after fetching
     } catch (error) {
       console.log(
         // `Error fetching product with ID ${productInput.id}:`,

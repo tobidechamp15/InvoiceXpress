@@ -26,14 +26,10 @@ const Dashboard = () => {
   // const userToken = localStorage.getItem("userToken");
   const getAllUsers = () => {
     axiosInstance
-      .get("/getUsers", { headers })
+      .get(`/getUserById/${loggedInUser}`, { headers })
       .then((response) => {
-        const users = response.data.data;
-        const loggedInUserInfo = users.find(
-          (data) => data._id === loggedInUser
-        );
-        setUser(loggedInUserInfo);
-        console.log("user", user);
+        console.log(response.data);
+        setUser(response.data);
       })
       .catch((err) => {
         console.log(user);
@@ -147,7 +143,7 @@ const Dashboard = () => {
                 Generate Receipt
               </NavLink>
               <NavLink
-                to="/dashboard/settings"
+                to="/dashboard/transaction-report"
                 className={({ isActive }) =>
                   `${
                     isActive ? "active-tab" : "text-white "
