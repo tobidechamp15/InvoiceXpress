@@ -29,6 +29,50 @@ const CustomerInfo = ({ onChange }) => {
               onChange={(e) => onChange("address", e.target.value)}
             />
           </div>
+          <div className="flex w-full flex-col items-start">
+            <label htmlFor="email" className="input-name">
+              Email:
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              onChange={(e) => onChange("email", e.target.value)}
+            />
+          </div>
+          <div className="flex w-full flex-col items-start">
+            <label htmlFor="phoneNumber" className="input-name">
+              Phone Number:
+            </label>
+            <input
+              type="number"
+              className="form-control"
+              id="phoneNumber"
+              onChange={(e) => onChange("phoneNumber", e.target.value)}
+            />
+          </div>
+          <div className="flex w-full flex-col items-start">
+            <label htmlFor="Date" className="input-name">
+              Date:
+            </label>
+            <input
+              type="date"
+              className="form-control"
+              id="date"
+              onChange={(e) => onChange("date", e.target.value)}
+            />
+          </div>
+          <div className="flex w-full flex-col items-start">
+            <label htmlFor="amountPaid" className="input-name">
+              Amount Paid:
+            </label>
+            <input
+              type="number"
+              className="form-control"
+              id="amountPaid"
+              onChange={(e) => onChange("amountPaid", e.target.value)}
+            />
+          </div>
           <div className="w-full">
             <label>Select the payment method</label>
             <select
@@ -36,7 +80,7 @@ const CustomerInfo = ({ onChange }) => {
               onChange={(e) => onChange("paymentMethod", e.target.value)}
             >
               <option value="">Select an option</option>
-              <option value="Debit Card">Debit Card</option>
+              <option value="POS">Debit Card</option>
               <option value="Transfer">Transfer</option>
               <option value="Cash">Cash</option>
             </select>

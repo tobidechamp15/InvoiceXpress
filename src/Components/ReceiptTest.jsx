@@ -1,8 +1,16 @@
 import React, { useState } from "react";
+import CustomerInfo from "./CustomerInfo";
 import axiosInstance from "./axios/axios";
 import headers from "./headers/headers";
 
 const ReceiptTest = () => {
+  const [customerName, setCustomerName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const [date, setDate] = useState("");
+  const [amountPaid, setAmountPaid] = useState("");
   const [products, setProducts] = useState([]);
   const [productInput, setProductInput] = useState({ id: "", quantity: "" });
 
@@ -34,6 +42,25 @@ const ReceiptTest = () => {
     }
   };
 
+  const handleCustomerInfoChange = (name, value) => {
+    // Handle changes in customer information
+
+    if (name === "customerName") {
+      setCustomerName(value);
+    } else if (name === "address") {
+      setAddress(value);
+    } else if (name === "paymentMethod") {
+      setPaymentMethod(value);
+    } else if (name === "email") {
+      setEmail(value);
+    } else if (name === "phoneNumber") {
+      setPhoneNumber(value);
+    } else if (name === "date") {
+      setDate(value);
+    } else if (name === "amountPaid") {
+      setAmountPaid(value);
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (productInput.id.trim() !== "" && productInput.quantity.trim() !== "") {
@@ -45,6 +72,36 @@ const ReceiptTest = () => {
       return total + product.price * product.quantity;
     }, 0);
   };
+
+  const handleCreateInvoice = () => {
+    // handleCustomerInfoChange();
+    const items = products.map((product) => ({
+      itemName: product.productName,
+      quantity: product.quantity,
+      price: product.price,
+    }));
+    const data = JSON.stringify({
+      invoice: {
+        customerName,
+        email,
+        phone: phoneNumber,
+        address,
+        amountPaid,
+        datePaid: date,
+        paymentMethod,
+      },
+      items,
+    });
+
+    axiosInstance
+      .post("/createInvoice", data, { headers })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((err) => {
+        console.error(err.response);
+      });
+  };
   return (
     <div className="text-white container-fluid h-screen my-4 ">
       <div className="justify-between items-center flex md:mx-[24px]">
@@ -55,9 +112,12 @@ const ReceiptTest = () => {
           className="flex gap-2 items-center gen-rec-cont"
         >
           <img src="" alt="" />
-          <span className="gen-rec">Generate Receipt</span>
+          <span onClick={handleCreateInvoice} className="gen-rec">
+            Generate Receipt
+          </span>
         </span>
       </div>
+      <CustomerInfo onChange={handleCustomerInfoChange} />
       <div className="flex flex-col w-full justify-center items-center mt-4">
         <form
           onSubmit={handleSubmit}
