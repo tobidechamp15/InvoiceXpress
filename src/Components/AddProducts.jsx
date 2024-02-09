@@ -43,7 +43,9 @@ const AddProducts = () => {
       .post("createProduct", data, { headers })
       .then((response) => {
         setErrorMessage("Product created successfully");
-
+        setTimeout(() => {
+          setErrorMessage(null); // Hide error message after 5 seconds
+        }, 2000);
         // alert(response.message);
         console.log(response);
       })
@@ -52,6 +54,9 @@ const AddProducts = () => {
         if (err) {
           setErrorMessage("Product Id already exists");
         }
+        setTimeout(() => {
+          setErrorMessage(null); // Hide error message after 5 seconds
+        }, 2000);
       });
   };
   const handleFormChange = () => {

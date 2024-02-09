@@ -91,8 +91,8 @@ const Dashboard = () => {
           linkTo: "/dashboard/changePassword",
         },
         {
-          item: "Update Profile",
-          linkTo: "/",
+          item: "Upgrade Profile",
+          linkTo: "/dashboard/upgradeProfile",
         },
         {
           item: "Sign In",
