@@ -21,6 +21,7 @@ import AddProducts from "./Components/AddProducts";
 import DeleteProducts from "./Components/DeleteProducts";
 import ReceiptTest from "./Components/ReceiptTest";
 import InvoiceHistory from "./Components/InvoiceHistory";
+import UpgradeProfile from "./Components/UpgradeProfile";
 
 //Create a Router
 const router = createBrowserRouter([
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/changePassword",
         element: <ChangePassword />,
+      },
+      {
+        path: "/dashboard/upgradeProfile",
+        element: <UpgradeProfile />,
       },
     ],
   },
