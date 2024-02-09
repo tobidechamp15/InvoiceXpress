@@ -13,7 +13,7 @@ const InvoiceHistory = () => {
         // console.log(response.data.data);
 
         const invoiceList = response.data.data;
-        console.log(invoiceList);
+        // console.log(invoiceList);
         setInvoices(invoiceList);
       })
       .catch((err) => {
