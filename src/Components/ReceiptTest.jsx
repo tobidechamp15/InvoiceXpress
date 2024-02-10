@@ -103,7 +103,7 @@ const ReceiptTest = () => {
       });
   };
   return (
-    <div className="text-white container-fluid h-screen my-4 ">
+    <div className="text-white container-fluid min-h-screen my-4 ">
       <div className="justify-between items-center flex md:mx-[24px]">
         <span className="nav-title">Add Products</span>
         <span
@@ -121,31 +121,31 @@ const ReceiptTest = () => {
       <div className="flex flex-col w-full justify-center items-center mt-4">
         <form
           onSubmit={handleSubmit}
-          className=" flex flex-col gap-3 xsm:w-full md:w-3/5 mt-16 items-center justify-center"
+          className=" flex gap-2 xsm:flex-col xsm:w-full md:w-[75%]  items-center justify-center"
         >
-          <div className=" flex-col flex gap-4 items-start w-full">
+          <div className=" flex-col flex gap-2 items-start w-full">
             <span className="input-name">Enter product ID:</span>
             <input
               type="number"
-              className="form-control input-text"
+              className="form-control input-text  md:w-[196px]"
               name="id"
               value={productInput.id}
               onChange={handleInputChange}
               required
             />
           </div>
-          <div className=" flex-col flex gap-4 items-start w-full">
+          <div className=" flex-col flex gap-2 items-start w-full">
             <span className="input-name">Enter quantity</span>
             <input
               type="number"
-              className="form-control input-text"
+              className="form-control input-text md:w-[196px]"
               name="quantity"
               value={productInput.quantity}
               onChange={handleInputChange}
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary md:w-[96px]">
             Fetch Product
           </button>
         </form>
@@ -158,7 +158,10 @@ const ReceiptTest = () => {
           </li>
         ))}
       </ul>
-      <div>Total Amount: ${calculateTotalAmount()}</div>
+      <input
+        className="input-field form-control my-3 md:w-[196px]"
+        value={calculateTotalAmount()}
+      />
     </div>
   );
 };

@@ -113,10 +113,14 @@ body {
 .input-name {
   color: var(--white, #fff);
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
+  margin-bottom: 10px;
   line-height: normal;
+}
+.input-field {
+  height: 48px;
 }
 
 .action-btn {
