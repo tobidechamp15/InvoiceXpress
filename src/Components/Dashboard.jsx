@@ -14,6 +14,7 @@ import products from "../assets/products.svg";
 import axiosInstance from "./axios/axios";
 import userAvatar from "../assets/user.svg";
 import headers from "./headers/headers";
+import Logout from "./Logout";
 
 // import Logout from "./Logout";
 
@@ -33,7 +34,7 @@ const Dashboard = () => {
       })
       .catch((err) => {
         console.log(user);
-        console.error(err);
+        console.error(err.response);
       });
   };
 
@@ -115,7 +116,7 @@ const Dashboard = () => {
           <Link to="/" className="flex items-center justify-center">
             <img src={logo} alt="" />
           </Link>
-          <div className="flex flex-col w-100 h-full justify-between mt-[120px] px-4">
+          <div className="flex flex-col w-100 h-full justify-around mt-[120px] px-4">
             <section className="flex flex-col gap-3 ">
               <NavLink
                 to="/dashboard/information"
@@ -215,7 +216,7 @@ const Dashboard = () => {
                 ))}
               </ul>
             </section>
-            {/* <><Logout /></> */}
+            <Logout />
           </div>
         </div>
       </section>
