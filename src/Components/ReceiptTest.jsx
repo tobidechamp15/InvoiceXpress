@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CustomerInfo from "./CustomerInfo";
 import axiosInstance from "./axios/axios";
 import headers from "./headers/headers";
+import Receipt from "./Receipt";
 
 const ReceiptTest = () => {
   const [customerName, setCustomerName] = useState("");
@@ -13,6 +14,8 @@ const ReceiptTest = () => {
   const [amountPaid, setAmountPaid] = useState("");
   const [products, setProducts] = useState([]);
   const [productInput, setProductInput] = useState({ id: "", quantity: "" });
+  const [showInvoice, setShowInvoice] = useState("");
+  const [invoiceData, setInvoiceData] = useState({});
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -96,73 +99,83 @@ const ReceiptTest = () => {
     axiosInstance
       .post("/createInvoice", data, { headers })
       .then((response) => {
-        console.log(response.data);
+        console.log(response.data.invoice);
+        setInvoiceData(JSON.parse(data)); // Set invoice data
+        console.log(JSON.parse(data)); // Set invoice data
+        setShowInvoice(true);
+        // setShowInvoice(true); // Show the receipt after generating it
       })
       .catch((err) => {
         console.error(err.response);
       });
   };
   return (
-    <div className="text-white container-fluid min-h-screen my-4 ">
-      <div className="justify-between items-center flex md:mx-[24px]">
-        <span className="nav-title">Add Products</span>
-        <span
-          to="/dashboard/add-products"
-          //   onClick={setShowModal(true)}
-          className="flex gap-2 items-center gen-rec-cont"
-        >
-          <img src="" alt="" />
-          <span onClick={handleCreateInvoice} className="gen-rec">
-            Generate Receipt
-          </span>
-        </span>
-      </div>
-      <CustomerInfo onChange={handleCustomerInfoChange} />
-      <div className="flex flex-col w-full justify-center items-center mt-4">
-        <form
-          onSubmit={handleSubmit}
-          className=" flex gap-2 xsm:flex-col xsm:w-full md:w-[75%]  items-center justify-center"
-        >
-          <div className=" flex-col flex gap-2 items-start w-full">
-            <span className="input-name">Enter product ID:</span>
-            <input
-              type="number"
-              className="form-control input-text  md:w-[196px]"
-              name="id"
-              value={productInput.id}
-              onChange={handleInputChange}
-              required
-            />
+    <>
+      {showInvoice ? (
+        <Receipt invoiceData={invoiceData} />
+      ) : (
+        <div className="text-white container-fluid min-h-screen my-4 ">
+          <div className="justify-between items-center flex md:mx-[24px]">
+            <span className="nav-title">Add Products</span>
+            <span
+              to="/dashboard/add-products"
+              //   onClick={setShowModal(true)}
+              className="flex gap-2 items-center gen-rec-cont"
+            >
+              <img src="" alt="" />
+              <span onClick={handleCreateInvoice} className="gen-rec">
+                Generate Receipt
+              </span>
+            </span>
           </div>
-          <div className=" flex-col flex gap-2 items-start w-full">
-            <span className="input-name">Enter quantity</span>
-            <input
-              type="number"
-              className="form-control input-text md:w-[196px]"
-              name="quantity"
-              value={productInput.quantity}
-              onChange={handleInputChange}
-              required
-            />
+          <CustomerInfo onChange={handleCustomerInfoChange} />
+          <div className="flex flex-col w-full justify-center items-center mt-4">
+            <form
+              onSubmit={handleSubmit}
+              className=" flex gap-2 xsm:flex-col xsm:w-full md:w-[75%]  items-center justify-center"
+            >
+              <div className=" flex-col flex gap-2 items-start w-full">
+                <span className="input-name">Enter product ID:</span>
+                <input
+                  type="number"
+                  className="form-control input-text  md:w-[196px]"
+                  name="id"
+                  value={productInput.id}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className=" flex-col flex gap-2 items-start w-full">
+                <span className="input-name">Enter quantity</span>
+                <input
+                  type="number"
+                  className="form-control input-text md:w-[196px]"
+                  name="quantity"
+                  value={productInput.quantity}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <button type="submit" className="btn btn-primary md:w-[96px]">
+                Fetch Product
+              </button>
+            </form>
           </div>
-          <button type="submit" className="btn btn-primary md:w-[96px]">
-            Fetch Product
-          </button>
-        </form>
-      </div>
-      <ul>
-        {products.map((product, index) => (
-          <li key={index}>
-            {product.productName} - #{product.price} - Quantity:{" "}
-            {product.quantity}
-          </li>
-        ))}
-      </ul>
-      <input
-        className="input-field form-control my-3 md:w-[196px]"
-        value={calculateTotalAmount()}
-      />
-    </div>
+          <ul>
+            {products.map((product, index) => (
+              <li key={index}>
+                {product.productName} - #{product.price} - Quantity:{" "}
+                {product.quantity}
+              </li>
+            ))}
+          </ul>
+          <input
+            className="input-field form-control my-3 md:w-[196px]"
+            value={calculateTotalAmount()}
+          />
+        </div>
+      )}
+    </>
   );
 };
 
