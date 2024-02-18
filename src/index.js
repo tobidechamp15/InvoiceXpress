@@ -22,6 +22,7 @@ import DeleteProducts from "./Components/DeleteProducts";
 import ReceiptTest from "./Components/ReceiptTest";
 import InvoiceHistory from "./Components/InvoiceHistory";
 import UpgradeProfile from "./Components/UpgradeProfile";
+import ForgotPassword from "./Components/ForgotPassword";
 
 //Create a Router
 const router = createBrowserRouter([
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/forgotPassword",
+    element: <ForgotPassword />,
   },
   {
     path: "/setUp",
