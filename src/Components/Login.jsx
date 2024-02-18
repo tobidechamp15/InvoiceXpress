@@ -86,6 +86,9 @@ const Login = () => {
               Incorrect email or password
             </div>
           ) : null}
+          <Link to="/forgotPassword" className="text-danger w-full">
+            Forgot Password?
+          </Link>
           <button type="submit" className="action-btn">
             Login
           </button>
