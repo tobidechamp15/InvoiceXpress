@@ -92,9 +92,9 @@ const SetUp = () => {
         {createProfile ? (
           <div className="flex w-full ">
             <div className="xsm:w-full md:mx-20 mb-0 xsm:px-5 md:w-[100%] flex flex-col items-center mt-0 ">
-              <div className="flex self-start">
+              {/* <div className="flex self-start">
                 <img src={logo} className="" />
-              </div>
+              </div> */}
               <div className="flex  flex-col gap-4 items-center mt-[23px] mb-0">
                 <span className="description">Sign up </span>
               </div>

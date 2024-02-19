@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import axiosInstance from "./axios/axios";
 import headers from "./headers/headers";
@@ -28,14 +29,14 @@ const DeleteProducts = () => {
     <div className="text-white container-fluid h-screen my-4 ">
       <div className="justify-between items-center flex md:mx-[24px]">
         <span className="nav-title">Delete Products</span>
-        <span
+        <Link
           to="/dashboard/add-products"
           //   onClick={setShowModal(true)}
           className="flex gap-2 items-center gen-rec-cont"
         >
           <img src="" alt="" />
           <span className="gen-rec">Add Products</span>
-        </span>
+        </Link>
       </div>
       <div className="flex flex-col w-full justify-center items-center mt-4">
         <form
@@ -52,7 +53,7 @@ const DeleteProducts = () => {
               onChange={handleProductID}
               required
             />
-          </div>{" "}
+          </div>
           {error && <div className="text-red-500 w-full">{error}</div>}
           <button type="submit" className="btn btn-primary">
             Delete Product

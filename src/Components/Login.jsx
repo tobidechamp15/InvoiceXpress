@@ -45,7 +45,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex w-full xsm:h-screen">
+    <div className="flex w-full xsm:h-min-screen">
       <Link
         to="/"
         className="h-screen w-[30%]  items-center justify-center bg-side hidden md:flex"

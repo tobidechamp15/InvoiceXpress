@@ -400,6 +400,7 @@ body {
     color: var(--Text, #fffaff);
     font-size: 12px;
     font-style: normal;
+    text-align: center;
     font-weight: 600;
     line-height: normal;
   }
@@ -409,6 +410,12 @@ body {
   border-radius: 4px;
   background: var(--Primary, #0000fe);
   padding: 8px;
+}
+
+@media screen and (max-width: 375px) {
+  .gen-rec-cont img {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 962px) {

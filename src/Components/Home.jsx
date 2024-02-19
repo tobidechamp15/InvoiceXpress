@@ -11,7 +11,7 @@ const Home = () => {
             Receipt Made <span className="text-[#D8315B]"> Effortless</span>
           </span>
           <span>
-            with <span className="text-[#0000FE]">InvoiceXpress</span>{" "}
+            with <span className="text-[#0000FE]">InvoiceXpress</span>
           </span>
         </div>
         <div className=" flex flex-col text-[24px   ] text-center text-[#A3A3A3] font-medium w-full">
@@ -25,9 +25,12 @@ const Home = () => {
           >
             Login
           </Link>
-          <span className="sign-up-btn cursor-pointer xsm:text-[11px]">
+          <Link
+            to="/setUp"
+            className="sign-up-btn cursor-pointer xsm:text-[11px]"
+          >
             Sign Up
-          </span>
+          </Link>
         </div>
       </div>
       <div className="flex items-center justify-center md:w-1/2">

@@ -24,7 +24,7 @@ const Logout = () => {
   return (
     <div
       onClick={handleLogOut}
-      className="flex justify-center text-xl bg-pink-600 items-center w-full py-2 px-4 rounded-lg btn hover:bg-pink-700 transition-all ease-in-out text-white"
+      className="flex justify-center  text-xs md:text-xl bg-pink-600 items-center w-full py-2 px-4 rounded-lg btn hover:bg-pink-700 transition-all ease-in-out text-white"
     >
       <FontAwesomeIcon icon={faSignOut} className="me-2" />
       Logout

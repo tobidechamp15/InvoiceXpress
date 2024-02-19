@@ -164,7 +164,7 @@ const ReceiptTest = () => {
           <ul>
             {products.map((product, index) => (
               <li key={index}>
-                {product.productName} - #{product.price} - Quantity:{" "}
+                {product.productName} - #{product.price} - Quantity:
                 {product.quantity}
               </li>
             ))}

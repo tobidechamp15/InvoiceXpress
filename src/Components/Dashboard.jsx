@@ -106,7 +106,7 @@ const Dashboard = () => {
   return (
     <section className="w-100">
       <section
-        className={`flex w-[255px]   bg-[#1E1B18]  flex-col h-screen   side-shadow z-50 fixed transition-all ease-in-out duration-700 ${
+        className={`flex w-[255px]  overflow-scroll bg-[#1E1B18]  flex-col h-screen   side-shadow z-50 fixed transition-all ease-in-out duration-700 ${
           sidebarOpen ? "left-0  " : "xsm:-left-[255px]"
         }`}
         ref={sidebarRef}

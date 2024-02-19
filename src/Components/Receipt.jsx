@@ -59,7 +59,7 @@ const Receipt = ({ invoiceData }) => {
             <strong>Total Amount:</strong> ${totalAmount.toFixed(2)}
           </p>
         </div>
-      </div>{" "}
+      </div>
     </div>
   );
 };
