@@ -39,7 +39,7 @@ const Login = () => {
         window.location.href = "/dashboard/information";
       })
       .catch((error) => {
-        console.log(error.response);
+        console.log(error);
         setError(true);
       });
   };

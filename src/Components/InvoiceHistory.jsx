@@ -72,6 +72,12 @@ const InvoiceHistory = () => {
             <span className="text-black products  w-full  flex items-center justify-center">
               {inv.invoiceID}
             </span>
+            {inv.items.map((item) => {
+              <div>
+                <span>{item.itemName}</span>
+                <span>{item.price}</span>
+              </div>;
+            })}
           </div>
         ))}
       </div>

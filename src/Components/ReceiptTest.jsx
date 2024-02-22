@@ -116,7 +116,7 @@ const ReceiptTest = () => {
       ) : (
         <div className="text-white container-fluid min-h-screen my-4 ">
           <div className="justify-between items-center flex md:mx-[24px]">
-            <span className="nav-title">Add Products</span>
+            <span className="nav-title">Generate Receipt</span>
             <span
               to="/dashboard/add-products"
               //   onClick={setShowModal(true)}
