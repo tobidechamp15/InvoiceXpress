@@ -32,7 +32,7 @@ const InvoiceHistory = () => {
     getAllInvoices();
   }, [invoices]);
   return (
-    <div className="text-white container-fluid h-screen my-4 ">
+    <div className="text-white container-fluid h-min-screen my-4 ">
       <div className="justify-between items-center flex md:mx-[24px]">
         <span className="nav-title">Invoice History</span>
         <Link
