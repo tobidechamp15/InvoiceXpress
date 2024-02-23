@@ -29,7 +29,7 @@ const ChangePassword = () => {
   };
 
   return (
-    <div className="text-white container-fluid h-min-screen my-4 ">
+    <div className="text-white container-fluid min-h-screen my-4 ">
       <div className="justify-between items-center flex md:mx-[24px]">
         <span className="nav-title">Change Password</span>
         <div

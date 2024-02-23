@@ -95,10 +95,10 @@ const Dashboard = () => {
           item: "Upgrade Profile",
           linkTo: "/dashboard/upgradeProfile",
         },
-        {
-          item: "Sign In",
-          linkTo: "/",
-        },
+        // {
+        //   item: "Sign In",
+        //   linkTo: "/",
+        // },
       ],
     },
   ];
@@ -124,7 +124,7 @@ const Dashboard = () => {
                   `${
                     isActive
                       ? "active-tab"
-                      : "text-blue-500 hover:text-white hover:bg-blue-600"
+                      : "hover:text-white hover:bg-blue-600"
                   } px-2 sideBar-tabs flex gap-2 items-center just rounded-lg py-2
               `
                 }
@@ -136,7 +136,7 @@ const Dashboard = () => {
                 to="/dashboard/generate-receipt"
                 className={({ isActive }) =>
                   `${
-                    isActive ? "active-tab " : "text-white "
+                    isActive ? "active-tab " : "text-white hover:bg-blue-600"
                   } px-2 sideBar-tabs flex gap-2 items-center just  rounded-lg py-2`
                 }
               >
@@ -147,8 +147,8 @@ const Dashboard = () => {
                 to="/dashboard/transaction-report"
                 className={({ isActive }) =>
                   `${
-                    isActive ? "active-tab" : "text-white "
-                  } px-2 sideBar-tabs flex gap-2 items-center justif-center rounded-lg py-2`
+                    isActive ? "active-tab" : "text-white hover:bg-blue-600 "
+                  } ps-2 sideBar-tabs flex gap-2 items-center justif-center rounded-lg py-2`
                 }
               >
                 <img src={report} alt="" />

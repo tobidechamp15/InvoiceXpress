@@ -7,9 +7,6 @@ const Products = () => {
   //   const [showModal, setShowModal] = useState(false);
 
   const [userProducts, setUserProducts] = useState([]);
-  //   const userToken = localStorage.getItem("userToken");
-  //   const userID = localStorage.getItem("userID");
-  //   console.log(userID);
   const getAllProduct = () => {
     axiosInstance
       .get("/getAllProduct", { headers })
@@ -28,7 +25,7 @@ const Products = () => {
     getAllProduct();
   }, [userProducts]);
   return (
-    <div className="text-white container-fluid h-min-screen my-4 ">
+    <div className="text-white container-fluid min-h-screen my-4 ">
       <div className="justify-between items-center flex md:mx-[24px]">
         <span className="nav-title">Products</span>
         <Link
