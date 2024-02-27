@@ -311,6 +311,20 @@ body {
   line-height: normal;
 }
 
+.invoiceList {
+  background: #fff !important;
+  transition: 0.3s ease-in-out;
+  color: #002589;
+  font-size: 20px;
+}
+
+.invoiceList:hover {
+  background: #e6e5e5 !important;
+  transition: ease-in-out;
+  transform: scale(1.03);
+  border-radius: 20px;
+}
+
 .products {
   font-weight: 600;
   font-size: 16px;

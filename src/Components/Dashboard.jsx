@@ -230,7 +230,12 @@ const Dashboard = () => {
           />
           <span className="text-xl xs:hidden font-bold"></span>
           <div className="flex gap-2 items-center justify-center">
-            <span className="text-white">Welcome {user.username}</span>
+            <span className="text-white">
+              Welcome
+              <span className="font-bold text-gray-200 text-xl  ">
+                {user.username}
+              </span>
+            </span>
             <img src={userAvatar} alt="" />
           </div>
         </div>

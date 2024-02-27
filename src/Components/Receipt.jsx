@@ -48,7 +48,7 @@ const Receipt = ({ invoiceData }) => {
             {items.map((item, index) => (
               <li key={index}>
                 <span>{item.itemName}</span>
-                <span>${item.price.toFixed(2)}</span>
+                <span>#{item.price.toFixed(2)}</span>
                 <span>Qty: {item.quantity}</span>
               </li>
             ))}
