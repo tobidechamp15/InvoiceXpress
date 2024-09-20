@@ -109,7 +109,7 @@ const InvoiceHistory = () => {
           </div>
         </div>
       ) : (
-        <div className="text-white container-fluid min-h-screen">
+        <div className="text-white container-fluid min-h-screen my-4">
           <div className="justify-between items-center flex md:mx-[24px]">
             <span className="nav-title">Invoice History</span>
             <Link

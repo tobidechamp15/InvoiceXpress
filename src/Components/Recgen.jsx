@@ -58,7 +58,7 @@ const Recgen = () => {
   };
 
   return (
-    <div className="container-fluid min-h-screen py-5">
+    <div className="container-fluid flex-grow py-5">
       {showReceipt ? (
         <Receipt
           customerName={customerName}

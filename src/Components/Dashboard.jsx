@@ -95,10 +95,6 @@ const Dashboard = () => {
           item: "Upgrade Profile",
           linkTo: "/dashboard/upgradeProfile",
         },
-        // {
-        //   item: "Sign In",
-        //   linkTo: "/",
-        // },
       ],
     },
   ];
@@ -106,7 +102,7 @@ const Dashboard = () => {
   return (
     <section className="w-100">
       <section
-        className={`flex w-[255px]  overflow-auto bg-[#1E1B18]  flex-col h-screen   side-shadow z-50 fixed transition-all ease-in-out duration-700 ${
+        className={`flex w-[255px]  overflow-auto bg-[#1E1B18] justify-between h-full  flex-col min-h-screen   side-shadow z-50 fixed transition-all ease-in-out duration-700 ${
           sidebarOpen ? "left-0  " : "xsm:-left-[255px]"
         }`}
         ref={sidebarRef}
@@ -114,17 +110,15 @@ const Dashboard = () => {
       >
         <div className="w-100 flex flex-col self-center gap-2 h-full ">
           <Link to="/" className="flex items-center justify-center">
-            <img src={logo} alt="" />
+            <img src={logo} className="w-[100px]" />
           </Link>
-          <div className="flex flex-col w-100 h-full justify-around mt-[120px] px-4">
+          <div className="flex flex-col w-100 h-full justify-around  gap-3 px-4">
             <section className="flex flex-col gap-3 ">
               <NavLink
                 to="/dashboard/information"
                 className={({ isActive }) =>
                   `${
-                    isActive
-                      ? "active-tab"
-                      : "hover:text-white hover:bg-blue-600"
+                    isActive ? "active-tab" : "hover:text-white "
                   } px-2 sideBar-tabs flex gap-2 items-center just rounded-lg py-2
               `
                 }
@@ -136,7 +130,7 @@ const Dashboard = () => {
                 to="/dashboard/generate-receipt"
                 className={({ isActive }) =>
                   `${
-                    isActive ? "active-tab " : "text-white hover:bg-blue-600"
+                    isActive ? "active-tab " : "text-white "
                   } px-2 sideBar-tabs flex gap-2 items-center just  rounded-lg py-2`
                 }
               >
@@ -147,14 +141,14 @@ const Dashboard = () => {
                 to="/dashboard/transaction-report"
                 className={({ isActive }) =>
                   `${
-                    isActive ? "active-tab" : "text-white hover:bg-blue-600 "
+                    isActive ? "active-tab" : "text-white  "
                   } ps-2 sideBar-tabs flex gap-2 items-center justif-center rounded-lg py-2`
                 }
               >
                 <img src={report} alt="" />
                 Transaction Report
               </NavLink>
-              <ul className="list mt-2 list-non w-full flex gap-2 flex-col items-center   transition-all ease-in-out duration-500">
+              <ul className="list mt-2 list-non w-full flex gap-3 flex-col items-center   transition-all ease-in-out duration-500">
                 {dropdownData.map((dropdown, index) => (
                   <li
                     className="w-full flex flex-col hm text-white  hover:text-white "
@@ -171,8 +165,8 @@ const Dashboard = () => {
                       <span
                         className={
                           activeDropdown === index
-                            ? "b text-white w-100 p-2 cursor-pointer  flex items-center gap-2"
-                            : "p-2 cursor-pointer flex gap-2 items-center "
+                            ? " text-white w-100 p-2 cursor-pointer text-[14px]  flex items-center gap-2"
+                            : "p-2 cursor-pointer flex gap-2 items-center text-[14px]  "
                         }
                       >
                         {dropdown.logo ? (
@@ -206,7 +200,11 @@ const Dashboard = () => {
                         <NavLink
                           key={itemIndex}
                           to={item.linkTo}
-                          className="p-3"
+                          className={({ isActive }) =>
+                            isActive
+                              ? "p-2 text-white ps-3 font-bold bg-[#0000a2] rounded-lg text-[14px]"
+                              : "p-3 text-[14px]"
+                          }
                         >
                           {item.item}
                         </NavLink>
@@ -220,7 +218,7 @@ const Dashboard = () => {
           </div>
         </div>
       </section>
-      <section className=" flex flex-col  md:ms-[255px] ">
+      <section className=" flex flex-col  md:ms-[255px] h-screen ">
         <div className="flex w-100 b md:py-10 py-3 items-center justify-between top-bar px-9">
           <FontAwesomeIcon
             icon={faBars}
