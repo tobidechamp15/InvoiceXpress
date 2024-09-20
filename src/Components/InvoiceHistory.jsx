@@ -46,11 +46,12 @@ const InvoiceHistory = () => {
   return (
     <div>
       {showInvoicesInfo ? (
-        <div className=" min-h-screen p-2">
-          <div className="flex justify-between px-2 items-center">
+        <div className=" min-h-screen p-2 ">
+          <div className="flex justify-between px-2 items-center mt-[40px]">
             <span className="mb-6">Display Information</span>
             <span
-              className="font-extrabold text-[25px]"
+              className="font-extrabold text-[25px] cursor-pointer
+              "
               onClick={() => setShowInvoicesInfo(null)}
             >
               X
