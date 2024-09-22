@@ -29,7 +29,7 @@ const Home = () => {
             Login
           </Link>
           <Link
-            to="/setUp"
+            to="/signup"
             className=" transition-transform duration-300 ease-in-out transform hover:scale-105 xsm:text-[12px] md:text-[16px] px-6 py-3 bg-gray-800 text-white rounded-lg shadow-md hover:bg-gray-900"
           >
             Sign Up
