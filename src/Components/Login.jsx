@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import logo from "../assets/logo.svg";
 import google from "../assets/google.svg";
 import { Link } from "react-router-dom";
-import axiosInstance from "./axios/axios";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -20,30 +20,44 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log({
       email,
       password,
     });
-    axiosInstance
-      .post("/signIn", {
+    try {
+      const auth = getAuth(app);
+
+      const userCredentials = await signInWithEmailAndPassword(
+        auth,
         email,
-        password,
-      })
-      .then((res) => {
-        console.log(res.data);
-        const data = res.data;
-        localStorage.setItem("userID", data.userId);
-        localStorage.setItem("userToken", data.token);
-        window.location.href = "/dashboard/information";
-      })
-      .catch((error) => {
-        console.log(error);
-        setError(true);
-      });
+        password
+      );
+
+      const user = userCredentials.user;
+      localStorage.setItem("userId", user.uid);
+
+      const userProfile = await fetchUserProfile(user.uid);
+      console.log("User Profile", userProfile);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
+  const fetchUserProfile = async (userId) => {
+    try {
+      const userDocRef = doc(db, "users", userId);
+      const userDoc = await getDoc(userDocRef);
+      if (userDoc.exists()) {
+        return userDoc.data();
+      } else {
+        console.log("No such document!");
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
   return (
     <div className="flex w-full xsm:min-h-screen">
       <Link

@@ -1,26 +1,9 @@
 import React from "react";
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axiosInstance from "./axios/axios";
-import headers from "./headers/headers";
 
 const Logout = () => {
-  const handleLogOut = () => {
-    axiosInstance
-      .post("logout", {}, { headers })
-      .then((response) => {
-        console.log(response.data);
-        const successMessage = response.data;
-        if (successMessage.success) {
-          window.location.href = "/";
-          localStorage.removeItem("userToken");
-          localStorage.removeItem("userID");
-        }
-      })
-      .catch((error) => {
-        console.error(error.response);
-      });
-  };
+  const handleLogOut = () => {};
   return (
     <div
       onClick={handleLogOut}

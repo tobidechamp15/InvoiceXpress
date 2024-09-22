@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import logo from "../assets/mob-logo.svg";
-import axiosInstance from "./axios/axios";
 const CreateProfile = () => {
   //   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -41,19 +40,6 @@ const CreateProfile = () => {
 
   const handleCreate = () => {
     // console.log(`Creating a new Company with name: ${companyName}`);
-    axiosInstance
-      .post("/signup", {
-        username,
-        email,
-        password,
-        companyName,
-        address,
-        phoneNumber,
-        plan,
-      })
-      .then((response) => {
-        console.log(response.data);
-      });
   };
   return (
     <div className="flex w-full ">

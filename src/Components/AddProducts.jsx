@@ -1,7 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import axiosInstance from "./axios/axios";
-import headers from "./headers/headers";
 
 const AddProducts = () => {
   const [productName, setProductName] = useState("");
@@ -36,28 +34,10 @@ const AddProducts = () => {
     quantity,
     price,
   };
+  console.log(data);
   const handleCreateProducts = (e) => {
     e.preventDefault();
     // console.log(data);
-    axiosInstance
-      .post("createProduct", data, { headers })
-      .then((response) => {
-        setErrorMessage("Product created successfully");
-        setTimeout(() => {
-          setErrorMessage(null); // Hide error message after 5 seconds
-        }, 2000);
-        // alert(response.message);
-        console.log(response);
-      })
-      .catch((err) => {
-        // alert(err);
-        if (err) {
-          setErrorMessage("Product Id already exists");
-        }
-        setTimeout(() => {
-          setErrorMessage(null); // Hide error message after 5 seconds
-        }, 2000);
-      });
   };
   const handleFormChange = () => {
     setErrorMessage(null);

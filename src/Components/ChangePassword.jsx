@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import axiosInstance from "./axios/axios";
-import headers from "./headers/headers";
 
 const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState("");
@@ -16,17 +14,7 @@ const ChangePassword = () => {
   const handleConfirmPassword = (e) => {
     setConfirm_Password(e.target.value);
   };
-  const handleChangePassword = () => {
-    axiosInstance
-      .post(
-        "changePassword",
-        { oldPassword, newPassword, confirm_password },
-        { headers }
-      )
-      .then((response) => {
-        console.log(response);
-      });
-  };
+  const handleChangePassword = () => {};
 
   return (
     <div className="text-white container-fluid min-h-screen my-4 ">

@@ -11,18 +11,17 @@ import "./index.css";
 //Routes
 import Landing from "./Components/Landing";
 import Login from "./Components/Login";
-import SetUp from "./Components/SetUp";
 import Dashboard from "./Components/Dashboard";
 import AppInfo from "./Components/AppInfo";
-// import Recgen from "./Components/Recgen";
 import Products from "./Components/Products";
 import ChangePassword from "./Components/ChangePassword";
 import AddProducts from "./Components/AddProducts";
 import DeleteProducts from "./Components/DeleteProducts";
 import ReceiptTest from "./Components/ReceiptTest";
 import InvoiceHistory from "./Components/InvoiceHistory";
-import UpgradeProfile from "./Components/UpgradeProfile";
 import ForgotPassword from "./Components/ForgotPassword";
+import UpdateProfile from "./Components/UpdateProfile";
+import SignUp from "./Components/SignUp";
 
 //Create a Router
 const router = createBrowserRouter([
@@ -39,8 +38,8 @@ const router = createBrowserRouter([
     element: <ForgotPassword />,
   },
   {
-    path: "/setUp",
-    element: <SetUp />,
+    path: "/signUp",
+    element: <SignUp />,
   },
   {
     path: "/rec-test",
@@ -80,8 +79,8 @@ const router = createBrowserRouter([
         element: <ChangePassword />,
       },
       {
-        path: "/dashboard/upgradeProfile",
-        element: <UpgradeProfile />,
+        path: "/dashboard/updateProfile",
+        element: <UpdateProfile />,
       },
     ],
   },

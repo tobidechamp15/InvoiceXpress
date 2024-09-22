@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import axiosInstance from "./axios/axios";
-import headers from "./headers/headers";
 
 const DeleteProducts = () => {
   const [productID, setProductID] = useState("");
@@ -13,17 +11,6 @@ const DeleteProducts = () => {
   };
   const handleDeleteProducts = (e) => {
     e.preventDefault();
-    axiosInstance
-      .delete(`deleteProduct/${productID}`, { headers })
-      .then((response) => {
-        setError(response.data.message);
-
-        console.log(response.data.data);
-      })
-      .catch((err) => {
-        setError(err.response.data.message);
-        console.error(err.response);
-      });
   };
   return (
     <div className="text-white container-fluid min-h-screen my-4 ">

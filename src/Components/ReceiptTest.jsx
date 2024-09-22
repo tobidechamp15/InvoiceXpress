@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import CustomerInfo from "./CustomerInfo";
-import axiosInstance from "./axios/axios";
-import headers from "./headers/headers";
 import Receipt from "./Receipt";
 
 const ReceiptTest = () => {
@@ -26,27 +24,10 @@ const ReceiptTest = () => {
 
   // Fetch product details by product ID
   const fetchProduct = async () => {
-    try {
-      setLoading(true); // Set loading to true
-      const response = await axiosInstance.get(
-        `/getByProductId/${productInput.id}`,
-        { headers }
-      );
-      const productData = response.data;
-      const productWithQuantity = {
-        ...productData,
-        quantity: productInput.quantity,
-      };
-      setProducts((prevProducts) => [...prevProducts, productWithQuantity]);
-      setProductInput({ id: "", quantity: "" }); // Clear input fields
-    } catch (error) {
-      console.error(
-        "Error fetching product:",
-        error.response?.data?.message || error.message
-      );
-    } finally {
-      setLoading(false); // Set loading to false after fetching
-    }
+    setLoading(true); // Set loading state to true before making API call
+    setProducts("p");
+    setShowInvoice(true);
+    setInvoiceData("l");
   };
 
   // Handle customer information change
@@ -115,20 +96,7 @@ const ReceiptTest = () => {
       },
       items,
     });
-
-    axiosInstance
-      .post("/createInvoice", data, { headers })
-      .then((response) => {
-        console.log(response.data);
-        setInvoiceData(JSON.parse(data));
-        setShowInvoice(true); // Show the receipt after generating it
-      })
-      .catch((err) => {
-        console.error(
-          "Error creating invoice:",
-          err.response?.data?.message || err.message
-        );
-      });
+    console.log(data);
   };
 
   return (

@@ -1,25 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axiosInstance from "./axios/axios";
-import headers from "./headers/headers";
 
 const Products = () => {
   //   const [showModal, setShowModal] = useState(false);
 
   const [userProducts, setUserProducts] = useState([]);
-  const getAllProduct = () => {
-    axiosInstance
-      .get("/getAllProduct", { headers })
-      .then((response) => {
-        // console.log(response.data);
-        const datas = response.data.data;
-
-        datas.sort((a, b) => a.productID - b.productID);
-
-        setUserProducts(datas);
-      })
-      .catch((err) => console.error(err.response));
-  };
+  const getAllProduct = () => {};
 
   useEffect(() => {
     getAllProduct();

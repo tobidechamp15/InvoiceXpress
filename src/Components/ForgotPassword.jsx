@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
-import axiosInstance from "./axios/axios";
-import headers from "./headers/headers";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -13,15 +11,7 @@ const ForgotPassword = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    axiosInstance
-      .post("forgotPassword", email, { headers })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((err) => {
-        console.error(err.response);
-        setError("User does not exist");
-      });
+    setError(false);
   };
   return (
     <div className="flex w-full xsm:h-screen">

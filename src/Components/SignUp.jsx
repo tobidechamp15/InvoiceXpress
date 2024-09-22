@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import logo from "../assets/mob-logo.svg";
+import logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { app, db } from "./firebase/config";
+import { doc, setDoc } from "firebase/firestore";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -21,28 +24,68 @@ const SignUp = () => {
     setUsername(e.target.value);
   };
 
-  const storeValuesInLocalStorage = () => {
-    localStorage.setItem(
-      "user",
-      JSON.stringify({
-        username: username,
-        email: email,
-        password: password,
-      })
-    );
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // console.log({
+    //   username: username,
+    //   name: name,
+    //   email: user.email,
+    // });
+    let auth = getAuth(app);
+    try {
+      const response = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = response.user;
+      createUserProfile(user, username);
+
+      console.log(response.user);
+      localStorage.setItem("userId", response.user.uid);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
+  const createUserProfile = (user, username) => {
+    const userDocRef = doc(db, "users", user.uid);
+    console.log({
+      username: username,
+      id: user.uid,
+      email: user.email,
+    });
+    const userProfileData = {
+      username: username,
+      id: user.uid,
+      email: user.email,
+    };
+
+    setDoc(userDocRef, userProfileData)
+      .then(() => {
+        return true;
+      })
+      .catch((error) => {
+        console.error("Error Creating user Profile", error);
+      });
+  };
   return (
     <div className="flex w-full ">
-      <div className="xsm:w-full md:mx-20 mb-0 xsm:px-5 md:w-[100%] flex flex-col items-center mt-0 ">
-        <div className="flex self-start">
-          <img src={logo} className="" />
+      <Link
+        to="/"
+        className="min-h-screen w-[30%]  items-center justify-center bg-side hidden md:flex"
+      >
+        <img src={logo} alt="" />
+      </Link>
+      <div className="xsm:w-full md:m-20 mb-0 xsm:p-5 md:w-[70%] flex flex-col items-center mt-0 ">
+        <div className="flex  flex-col gap-4 items-center mt-[76px] mb-0">
+          <span className="description">Sign Up </span>
+          <span className="name">InvoiceXpress</span>
         </div>
-        <div className="flex  flex-col gap-4 items-center mt-[23px] mb-0">
-          <span className="description">Sign up </span>
-          {/* <span className="name">InvoiceXpress</span> */}
-        </div>
-        <form className="xsm:w-full md:w-3/5 mt-4 md:mt-16 flex flex-col md:gap-12 gap-4 items-center justify-center">
+        <form
+          className="xsm:w-full md:w-3/5 mt-4 md:mt-16 flex flex-col md:gap-12 gap-4 items-center justify-center"
+          onSubmit={handleSubmit}
+        >
           <div className=" flex-col flex gap-4 items-start w-full">
             <span className="input-name">Username</span>
             <input
@@ -59,6 +102,7 @@ const SignUp = () => {
               className="form-control input-text"
               value={email}
               onChange={handleEmail}
+              required
             />
           </div>
           <div className=" flex-col flex gap-4 items-start w-full">
@@ -68,6 +112,7 @@ const SignUp = () => {
               className="form-control input-text"
               value={password}
               onChange={handlePassword}
+              required
             />
           </div>
           <div className=" flex-col flex gap-4 items-start w-full">
@@ -77,11 +122,10 @@ const SignUp = () => {
               className="form-control input-text"
               value={confirmPassword}
               onChange={handleConfirmPassword}
+              required
             />
           </div>
-          <button onClick={storeValuesInLocalStorage} className="action-btn">
-            <Link to="/get-started/create-profile">Sign Up</Link>
-          </button>
+          <button type="submit">Sign Up</button>
         </form>
         {/* <div className="flex gap-4 md:w-3/5  border-white border-2 w-full text-white item-center p-3 my-5  rounded-[9995px] justify-center">
           <img src={google} alt="" />

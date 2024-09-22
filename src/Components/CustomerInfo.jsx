@@ -103,7 +103,7 @@ const CustomerInfo = ({ onChange }) => {
               Select the payment method:
             </label>
             <select
-              className="bg-gray-50 form-control text-white w-full mt-2 py-2 px-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
+              className="bg-gray-50 form-select  w-full mt-2 py-2 px-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
               onChange={(e) => onChange("paymentMethod", e.target.value)}
             >
               <option value="">Select an option</option>

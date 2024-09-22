@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import logo from "../assets/mob-logo.svg";
+import logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
-import axiosInstance from "./axios/axios";
 
 const SetUp = () => {
   const [username, setUsername] = useState("");
@@ -58,29 +57,12 @@ const SetUp = () => {
       phoneNo,
     });
     // console.log(`Creating a new Company with name: ${companyName}`);
-    axiosInstance
-      .post("/signup", {
-        username,
-        email,
-        password,
-        companyName,
-        plan,
-        address,
-        phoneNo,
-      })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        // Handle error
-        console.error("Error:", error.message);
-      });
   };
   return (
     <div className="xsm:min-h-[100vh] flex md:w-full">
       <Link
         to="/"
-        className="h-screen w-[30%]  items-center justify-center bg-side hidden md:flex"
+        className="min-h-screen w-[30%]  items-center justify-center bg-side hidden md:flex"
       >
         <img src={logo} alt="" />
       </Link>
@@ -181,14 +163,14 @@ const SetUp = () => {
                     onChange={handlePhoneNumber}
                   />
                 </div>
-                <div className="w-full flex flex-col gap-4 text-start input-name">
+                <div className="w-full flex flex-col gap-4 text-start input-name ">
                   <label htmlFor="plan">Select your plan</label>
                   <select
                     required
                     id="plan"
                     value={plan}
                     onChange={handlePlan}
-                    className="w-full form-control"
+                    className="w-full form-select bg-black"
                   >
                     <option value="">Select your plan</option>
                     <option value="Plan1">Plan 1</option>

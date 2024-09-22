@@ -1,7 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import axiosInstance from "./axios/axios";
-import headers from "./headers/headers";
 import { useState, useEffect } from "react";
 
 const InvoiceHistory = () => {
@@ -9,17 +7,7 @@ const InvoiceHistory = () => {
   const [invoicesInfo, setInvoicesInfo] = useState({});
   const [showInvoicesInfo, setShowInvoicesInfo] = useState(false);
 
-  const getAllInvoices = () => {
-    axiosInstance
-      .get("getAllInvoice", { headers })
-      .then((response) => {
-        const invoiceList = response.data.data;
-        setInvoices(invoiceList);
-      })
-      .catch((err) => {
-        console.error(err.response);
-      });
-  };
+  const getAllInvoices = () => {};
 
   const formatDate = (dateString) => {
     const dateObject = new Date(dateString);
@@ -35,6 +23,7 @@ const InvoiceHistory = () => {
     console.log("Clicked Invoice:", clickedInvoice);
     setShowInvoicesInfo(true);
     setInvoicesInfo(clickedInvoice);
+    setInvoices("k");
   };
 
   useEffect(() => {

@@ -11,9 +11,7 @@ import dashIcon from "../assets/dashIcon.svg";
 import receiptIcon from "../assets/ReceiptIcon.svg";
 import report from "../assets/report.svg";
 import products from "../assets/products.svg";
-import axiosInstance from "./axios/axios";
 import userAvatar from "../assets/user.svg";
-import headers from "./headers/headers";
 import Logout from "./Logout";
 
 // import Logout from "./Logout";
@@ -25,19 +23,7 @@ const Dashboard = () => {
 
   const loggedInUser = localStorage.getItem("userID");
   // const userToken = localStorage.getItem("userToken");
-  const getAllUsers = () => {
-    axiosInstance
-      .get(`/getUserById/${loggedInUser}`, { headers })
-      .then((response) => {
-        console.log(response.data);
-        setUser(response.data);
-      })
-      .catch((err) => {
-        console.log(user);
-        console.error(err.response);
-      });
-  };
-
+  const getAllUsers = () => {};
   const sidebarRef = useRef(null);
 
   const toggleSidebar = () => {
