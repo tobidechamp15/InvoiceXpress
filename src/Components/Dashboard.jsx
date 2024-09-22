@@ -23,7 +23,10 @@ const Dashboard = () => {
 
   const loggedInUser = localStorage.getItem("userID");
   // const userToken = localStorage.getItem("userToken");
-  const getAllUsers = () => {};
+  const getAllUsers = () => {
+    console.log(loggedInUser);
+    setUser("Tobilo");
+  };
   const sidebarRef = useRef(null);
 
   const toggleSidebar = () => {
