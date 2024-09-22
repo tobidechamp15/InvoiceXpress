@@ -11,6 +11,7 @@ const DeleteProducts = () => {
   };
   const handleDeleteProducts = (e) => {
     e.preventDefault();
+    setError;
   };
   return (
     <div className="text-white container-fluid min-h-screen my-4 ">

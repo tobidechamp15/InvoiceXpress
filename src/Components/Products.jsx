@@ -5,7 +5,9 @@ const Products = () => {
   //   const [showModal, setShowModal] = useState(false);
 
   const [userProducts, setUserProducts] = useState([]);
-  const getAllProduct = () => {};
+  const getAllProduct = () => {
+    setUserProducts;
+  };
 
   useEffect(() => {
     getAllProduct();
