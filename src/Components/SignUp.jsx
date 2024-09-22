@@ -75,7 +75,7 @@ const SignUp = () => {
         to="/"
         className="min-h-screen w-[30%] hidden md:flex items-center justify-center bg-side"
       >
-        <img src={logo} alt="Logo" className="animate-bounce" />
+        <img src={logo} alt="Logo" className="" />
       </Link>
       <div className="xsm:w-full md:m-20 xsm:p-5 md:w-[70%] flex flex-col items-center">
         <div className="flex flex-col gap-2 items-center mt-[60px] mb-2 text-white">
