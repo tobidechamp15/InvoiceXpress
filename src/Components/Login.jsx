@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 import logo from "../assets/logo.svg";
 import google from "../assets/google.svg";
-import { Link } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
+import { app, db } from "./firebase/config";
+import { doc, getDoc } from "firebase/firestore";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleEmail = (e) => {
     setError(false);
@@ -40,6 +49,7 @@ const Login = () => {
 
       const userProfile = await fetchUserProfile(user.uid);
       console.log("User Profile", userProfile);
+      navigate("/dashboard/information");
     } catch (error) {
       console.error(error);
     }
@@ -58,63 +68,91 @@ const Login = () => {
       console.error(error.message);
     }
   };
+  const handleSignInWithGoogle = () => {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider(); // Define the provider here
+
+    signInWithPopup(auth, provider).then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+
+      const user = result.user;
+      console.log(user);
+      console.log(token);
+      navigate("/dashboard/information");
+    });
+  };
   return (
-    <div className="flex w-full xsm:min-h-screen">
+    <div className="flex w-full xsm:min-h-screen bg-white text-gray-800">
       <Link
         to="/"
-        className="h-screen w-[30%]  items-center justify-center bg-side hidden md:flex"
+        className="h-screen w-[30%] hidden md:flex items-center justify-center bg-gray-100"
       >
-        <img src={logo} alt="" />
+        <img src={logo} alt="Logo" className="" />
       </Link>
-      <div className="xsm:w-full md:m-20 mb-0 xsm:p-5 md:w-[70%] flex flex-col items-center mt-0 ">
-        <div className="flex  flex-col gap-4 items-center mt-[76px] mb-0">
-          <span className="description">Sign in to</span>
-          <span className="name">InvoiceXpress</span>
+      <div className="xsm:w-full md:m-20 xsm:p-5 md:w-[70%] flex flex-col items-center">
+        <div className="flex flex-col gap-2 items-center mt-[60px] mb-2">
+          <span className="text-lg font-medium text-gray-600">Sign in to</span>
+          <span className="text-2xl font-bold text-gray-900 tracking-wide">
+            InvoiceXpress
+          </span>
         </div>
         <form
           onSubmit={handleSubmit}
-          className="xsm:w-full md:w-3/5 mt-16 flex flex-col gap-12 items-center justify-center"
+          className="xsm:w-full md:w-3/5 mt-8 flex flex-col gap-6 items-center justify-center"
         >
-          <div className=" flex-col flex gap-4 items-start w-full">
-            <span className="input-name">Email</span>
+          <div className="flex flex-col gap-2 items-start w-full">
+            <label className="input-nae text-sm text-gray-600">Email</label>
             <input
               type="email"
-              className="form-control input-text"
+              className="form-control input-text w-full bg-gray-100 text-gray-900 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
               value={email}
               onChange={handleEmail}
               required
             />
           </div>
-          <div className=" flex-col flex gap-4 items-start w-full">
-            <span className="input-name">Password</span>
+          <div className="flex flex-col gap-2 items-start w-full">
+            <label className="input-nme text-sm text-gray-600">Password</label>
             <input
               type="password"
-              className="form-control input-text"
+              className="form-control input-text w-full bg-gray-100 text-gray-900 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
               value={password}
               onChange={handlePassword}
               required
             />
           </div>
           {error ? (
-            <div className="text-red-500 w-full">
+            <div className="text-red-500 w-full text-sm">
               Incorrect email or password
             </div>
           ) : null}
-          <Link to="/forgotPassword" className="text-danger w-full">
+          <Link
+            to="/forgotPassword"
+            className="text-blue-500 text-sm underline w-full mt-1 hover:text-blue-600 transition-all duration-200"
+          >
             Forgot Password?
           </Link>
-          <button type="submit" className="action-btn">
+          <button
+            type="submit"
+            className="action-btn bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 w-full rounded-lg transition-transform transform hover:scale-105 focus:scale-95 duration-300"
+          >
             Login
           </button>
         </form>
-        <div className="flex gap-4 md:w-3/5  border-white border-2 w-full text-white item-center p-3 my-5  rounded-[9995px] justify-center">
-          <img src={google} alt="" />
+        <div
+          className="flex cursor-pointer gap-4 md:w-3/5 border-gray-300 border w-full text-gray-800 items-center p-3 my-5 rounded-full justify-center transition hover:bg-gray-100 duration-300"
+          onClick={handleSignInWithGoogle}
+        >
+          <img src={google} alt="Google Icon" className="w-5 h-5" />
           <span>Sign in with Google</span>
         </div>
-        <div className="my-4 ">
-          <span className="suggest-des">
+        <div className="my-4">
+          <span className="text-sm text-gray-600">
             Don&apos;t have an account?
-            <Link to="/signup" className="link-action ms-2">
+            <Link
+              to="/signup"
+              className="link-action text-blue-500 underline ml-2 hover:text-blue-600 transition-all duration-200"
+            >
               Sign Up
             </Link>
           </span>

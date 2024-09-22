@@ -70,71 +70,79 @@ const SignUp = () => {
       });
   };
   return (
-    <div className="flex w-full ">
+    <div className="flex w-full min-h-screen bg-[#212121]">
       <Link
         to="/"
-        className="min-h-screen w-[30%]  items-center justify-center bg-side hidden md:flex"
+        className="min-h-screen w-[30%] hidden md:flex items-center justify-center bg-side"
       >
-        <img src={logo} alt="" />
+        <img src={logo} alt="Logo" className="animate-bounce" />
       </Link>
-      <div className="xsm:w-full md:m-20 mb-0 xsm:p-5 md:w-[70%] flex flex-col items-center mt-0 ">
-        <div className="flex  flex-col gap-4 items-center mt-[76px] mb-0">
-          <span className="description">Sign Up </span>
-          <span className="name">InvoiceXpress</span>
+      <div className="xsm:w-full md:m-20 xsm:p-5 md:w-[70%] flex flex-col items-center">
+        <div className="flex flex-col gap-2 items-center mt-[60px] mb-2 text-white">
+          <span className="text-lg font-semibold">Sign Up</span>
+          <span className="text-2xl font-bold tracking-wide">
+            InvoiceXpress
+          </span>
         </div>
         <form
-          className="xsm:w-full md:w-3/5 mt-4 md:mt-16 flex flex-col md:gap-12 gap-4 items-center justify-center"
+          className="xsm:w-full md:w-3/5 mt-4 md:mt-10 flex flex-col gap-6 items-center justify-center"
           onSubmit={handleSubmit}
         >
-          <div className=" flex-col flex gap-4 items-start w-full">
-            <span className="input-name">Username</span>
+          <div className="flex flex-col gap-2 items-start w-full">
+            <label className="input-name text-sm text-gray-300">Username</label>
             <input
               type="text"
-              className="form-control input-text"
+              className="form-control input-text w-full bg-[#2C2C2C] text-white px-4 py-2 rounded-lg border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
               value={username}
               onChange={handleUsername}
             />
           </div>
-          <div className=" flex-col flex gap-4 items-start w-full">
-            <span className="input-name">Email</span>
+          <div className="flex flex-col gap-2 items-start w-full">
+            <label className="input-name text-sm text-gray-300">Email</label>
             <input
               type="email"
-              className="form-control input-text"
+              className="form-control input-text w-full bg-[#2C2C2C] text-white px-4 py-2 rounded-lg border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
               value={email}
               onChange={handleEmail}
               required
             />
           </div>
-          <div className=" flex-col flex gap-4 items-start w-full">
-            <span className="input-name">Password</span>
+          <div className="flex flex-col gap-2 items-start w-full">
+            <label className="input-name text-sm text-gray-300">Password</label>
             <input
               type="password"
-              className="form-control input-text"
+              className="form-control input-text w-full bg-[#2C2C2C] text-white px-4 py-2 rounded-lg border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
               value={password}
               onChange={handlePassword}
               required
             />
           </div>
-          <div className=" flex-col flex gap-4 items-start w-full">
-            <span className="input-name">Confirm Password</span>
+          <div className="flex flex-col gap-2 items-start w-full">
+            <label className="input-name text-sm text-gray-300">
+              Confirm Password
+            </label>
             <input
               type="password"
-              className="form-control input-text"
+              className="form-control input-text w-full bg-[#2C2C2C] text-white px-4 py-2 rounded-lg border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
               value={confirmPassword}
               onChange={handleConfirmPassword}
               required
             />
           </div>
-          <button type="submit">Sign Up</button>
+          <button
+            type="submit"
+            className="btn btn-primary w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition-transform transform hover:scale-105 focus:scale-95 duration-300"
+          >
+            Sign Up
+          </button>
         </form>
-        {/* <div className="flex gap-4 md:w-3/5  border-white border-2 w-full text-white item-center p-3 my-5  rounded-[9995px] justify-center">
-          <img src={google} alt="" />
-          <span>Sign in with Google</span>
-        </div> */}
-        <div className="md:my-[74px] my-4">
-          <span className="suggest-des">
+        <div className="md:my-[60px] my-4 text-gray-300">
+          <span className="suggest-des text-sm">
             Already have an account?
-            <Link to="/login" className="link-action ms-2">
+            <Link
+              to="/login"
+              className="link-action text-blue-400 underline ml-2 hover:text-blue-500 transition-all duration-200"
+            >
               Sign in
             </Link>
           </span>

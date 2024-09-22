@@ -49,7 +49,7 @@ const ForgotPassword = () => {
         <div className="my-4 ">
           <span className="suggest-des">
             Don&apos;t have an account?
-            <Link to="/setUp" className="link-action ms-2">
+            <Link to="/signup" className="link-action ms-2">
               Sign Up
             </Link>
           </span>
