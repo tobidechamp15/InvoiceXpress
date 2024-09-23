@@ -70,16 +70,16 @@ const SignUp = () => {
       });
   };
   return (
-    <div className="flex w-full min-h-screen bg-[#212121]">
+    <div className="flex w-full min-h-screen bg-white">
       <Link
         to="/"
-        className="min-h-screen w-[30%] hidden md:flex items-center justify-center bg-side"
+        className="min-h-screen w-[30%] hidden md:flex items-center justify-center bg-gray-100"
       >
-        <img src={logo} alt="Logo" className="" />
+        <img src={logo} alt="Logo" className="w-40" />
       </Link>
       <div className="xsm:w-full md:m-20 xsm:p-5 md:w-[70%] flex flex-col items-center">
-        <div className="flex flex-col gap-2 items-center mt-[60px] mb-2 text-white">
-          <span className="text-lg font-semibold">Sign Up</span>
+        <div className="flex flex-col gap-2 items-center mt-[60px] mb-2 text-gray-800">
+          <span className="text-sm font-semibold">Sign Up</span>
           <span className="text-2xl font-bold tracking-wide">
             InvoiceXpress
           </span>
@@ -89,41 +89,39 @@ const SignUp = () => {
           onSubmit={handleSubmit}
         >
           <div className="flex flex-col gap-2 items-start w-full">
-            <label className="input-name text-sm text-gray-300">Username</label>
+            <label className="  text-xs text-gray-600">Username</label>
             <input
               type="text"
-              className="form-control input-text w-full bg-[#2C2C2C] text-white px-4 py-2 rounded-lg border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
+              className="form-control input-text w-full bg-gray-50 text-gray-800 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300 ease-in-out"
               value={username}
               onChange={handleUsername}
             />
           </div>
           <div className="flex flex-col gap-2 items-start w-full">
-            <label className="input-name text-sm text-gray-300">Email</label>
+            <label className="  text-xs text-gray-600">Email</label>
             <input
               type="email"
-              className="form-control input-text w-full bg-[#2C2C2C] text-white px-4 py-2 rounded-lg border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
+              className="form-control input-text w-full bg-gray-50 text-gray-800 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300 ease-in-out"
               value={email}
               onChange={handleEmail}
               required
             />
           </div>
           <div className="flex flex-col gap-2 items-start w-full">
-            <label className="input-name text-sm text-gray-300">Password</label>
+            <label className="  text-xs text-gray-600">Password</label>
             <input
               type="password"
-              className="form-control input-text w-full bg-[#2C2C2C] text-white px-4 py-2 rounded-lg border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
+              className="form-control input-text w-full bg-gray-50 text-gray-800 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300 ease-in-out"
               value={password}
               onChange={handlePassword}
               required
             />
           </div>
           <div className="flex flex-col gap-2 items-start w-full">
-            <label className="input-name text-sm text-gray-300">
-              Confirm Password
-            </label>
+            <label className="  text-xs text-gray-600">Confirm Password</label>
             <input
               type="password"
-              className="form-control input-text w-full bg-[#2C2C2C] text-white px-4 py-2 rounded-lg border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
+              className="form-control input-text w-full bg-gray-50 text-gray-800 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300 ease-in-out"
               value={confirmPassword}
               onChange={handleConfirmPassword}
               required
@@ -136,12 +134,12 @@ const SignUp = () => {
             Sign Up
           </button>
         </form>
-        <div className="md:my-[60px] my-4 text-gray-300">
-          <span className="suggest-des text-sm">
+        <div className="md:my-[60px] my-4 text-gray-600">
+          <span className="suggest-des text-xs">
             Already have an account?
             <Link
               to="/login"
-              className="link-action text-blue-400 underline ml-2 hover:text-blue-500 transition-all duration-200"
+              className="link-action text-blue-500 underline ml-2 hover:text-blue-600 transition-all duration-200"
             >
               Sign in
             </Link>

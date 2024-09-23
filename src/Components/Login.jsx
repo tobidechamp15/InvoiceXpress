@@ -15,29 +15,25 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false); // Loading state
 
   const navigate = useNavigate();
 
   const handleEmail = (e) => {
     setError(false);
-
     setEmail(e.target.value);
   };
   const handlePassword = (e) => {
     setError(false);
-
     setPassword(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({
-      email,
-      password,
-    });
+    setLoading(true); // Set loading to true when submitting
+
     try {
       const auth = getAuth(app);
-
       const userCredentials = await signInWithEmailAndPassword(
         auth,
         email,
@@ -52,6 +48,9 @@ const Login = () => {
       navigate("/dashboard/information");
     } catch (error) {
       console.error(error);
+      setError(true);
+    } finally {
+      setLoading(false); // Stop loading after the process is done
     }
   };
 
@@ -68,22 +67,36 @@ const Login = () => {
       console.error(error.message);
     }
   };
-  const handleSignInWithGoogle = () => {
-    const auth = getAuth();
-    const provider = new GoogleAuthProvider(); // Define the provider here
 
-    signInWithPopup(auth, provider).then((result) => {
+  const handleSignInWithGoogle = async () => {
+    setLoading(true); // Show loader for Google sign-in
+
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+
+    try {
+      const result = await signInWithPopup(auth, provider);
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
-
       const user = result.user;
       console.log(user);
       console.log(token);
       navigate("/dashboard/information");
-    });
+    } catch (error) {
+      console.error(error);
+      setError(true);
+    } finally {
+      setLoading(false); // Stop loading after process
+    }
   };
+
   return (
-    <div className="flex w-full xsm:min-h-screen bg-white text-gray-800">
+    <div className="relative flex w-full xsm:min-h-screen bg-white text-gray-800">
+      {loading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
+          <div className="loader border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+        </div>
+      )}
       <Link
         to="/"
         className="h-screen w-[30%] hidden md:flex items-center justify-center bg-gray-100"
@@ -109,6 +122,7 @@ const Login = () => {
               value={email}
               onChange={handleEmail}
               required
+              disabled={loading} // Disable input during loading
             />
           </div>
           <div className="flex flex-col gap-2 items-start w-full">
@@ -119,13 +133,14 @@ const Login = () => {
               value={password}
               onChange={handlePassword}
               required
+              disabled={loading} // Disable input during loading
             />
           </div>
-          {error ? (
+          {error && (
             <div className="text-red-500 w-full text-sm">
               Incorrect email or password
             </div>
-          ) : null}
+          )}
           <Link
             to="/forgotPassword"
             className="text-blue-500 text-sm underline w-full mt-1 hover:text-blue-600 transition-all duration-200"
@@ -135,8 +150,9 @@ const Login = () => {
           <button
             type="submit"
             className="action-btn bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 w-full rounded-lg transition-transform transform hover:scale-105 focus:scale-95 duration-300"
+            disabled={loading} // Disable button during loading
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
         <div
