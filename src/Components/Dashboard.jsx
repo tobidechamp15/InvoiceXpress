@@ -13,6 +13,8 @@ import report from "../assets/report.svg";
 import products from "../assets/products.svg";
 import userAvatar from "../assets/user.svg";
 import Logout from "./Logout";
+import { db } from "./firebase/config";
+import { doc, getDoc } from "firebase/firestore";
 
 // import Logout from "./Logout";
 
@@ -21,12 +23,30 @@ const Dashboard = () => {
   const [activeDropdown, setActiveDropdown] = useState(null); // Track active dropdown
   const [user, setUser] = useState({});
 
-  const loggedInUser = localStorage.getItem("userID");
-  // const userToken = localStorage.getItem("userToken");
-  const getAllUsers = () => {
-    console.log(loggedInUser);
-    setUser("Tobilo");
+  const fetchUserProfile = async (userId) => {
+    try {
+      const userDocRef = doc(db, "users", userId);
+      const userDoc = await getDoc(userDocRef);
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        setUser(userData); // Update the user state with the fetched data
+        return userData; // Optional: return the data if needed
+      } else {
+        console.log("No such document!");
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
   };
+
+  // Example usage
+  useEffect(() => {
+    const userId = localStorage.getItem("userID");
+    if (userId) {
+      fetchUserProfile(userId);
+    }
+  }, []);
+
   const sidebarRef = useRef(null);
 
   const toggleSidebar = () => {
@@ -34,7 +54,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    getAllUsers();
+    // getAllUsers();
     const handleOutsideClick = (e) => {
       if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
         setSidebarOpen(false);
@@ -220,7 +240,7 @@ const Dashboard = () => {
             <span className="text-white">
               Welcome
               <span className="font-bold text-gray-200 text-xl  ">
-                {user.username}
+                {user.userName}
               </span>
             </span>
             <img src={userAvatar} alt="" />

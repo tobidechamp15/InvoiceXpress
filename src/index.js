@@ -22,6 +22,7 @@ import InvoiceHistory from "./Components/InvoiceHistory";
 import ForgotPassword from "./Components/ForgotPassword";
 import UpdateProfile from "./Components/UpdateProfile";
 import SignUp from "./Components/SignUp";
+import { UserProvider } from "./context/UserContext";
 
 //Create a Router
 const router = createBrowserRouter([
@@ -87,4 +88,8 @@ const router = createBrowserRouter([
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={router} />);
+root.render(
+  <UserProvider>
+    <RouterProvider router={router} />
+  </UserProvider>
+);

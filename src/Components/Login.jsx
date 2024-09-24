@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import { app, db } from "./firebase/config";
 import { doc, getDoc } from "firebase/firestore";
+import { useUser } from "../context/UserContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,6 +19,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false); // Loading state
 
   const navigate = useNavigate();
+  const { saveUser } = useUser();
 
   const handleEmail = (e) => {
     setError(false);
@@ -45,6 +47,9 @@ const Login = () => {
 
       const userProfile = await fetchUserProfile(user.uid);
       console.log("User Profile", userProfile);
+      saveUser(userProfile);
+      console.log(user);
+      // saveUser(userData);
       navigate("/dashboard/information");
     } catch (error) {
       console.error(error);
@@ -80,8 +85,9 @@ const Login = () => {
       const token = credential.accessToken;
       const user = result.user;
       console.log(user);
+      saveUser(user);
       console.log(token);
-      navigate("/dashboard/information");
+      // navigate("/dashboard/information");
     } catch (error) {
       console.error(error);
       setError(true);
