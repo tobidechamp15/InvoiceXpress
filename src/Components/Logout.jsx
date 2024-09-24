@@ -12,6 +12,7 @@ const Logout = () => {
       .then(() => {
         // Sign-out successful, you can redirect the user
         console.log("Logged out successfully");
+        navigate("/");
       })
       .catch((error) => {
         // Handle error if sign-out fails
