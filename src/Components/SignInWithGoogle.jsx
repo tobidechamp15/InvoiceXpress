@@ -1,8 +1,14 @@
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import google from "../assets/google.svg";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "./firebase/config";
 
 const SignInWithGoogle = () => {
+  const navigate = useNavigate();
   const handleSignInWithGoogle = async () => {
-    setLoading(true); // Show loader for Google sign-in
+    // setLoading(true); // Show loader for Google sign-in
 
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
@@ -15,7 +21,6 @@ const SignInWithGoogle = () => {
       const loggedInUserId = user.uid;
       localStorage.setItem("userId", loggedInUserId);
       console.log(user);
-      saveUser(user);
       // navigate("/dashboard/information");
       console.log(token);
       navigate("/dashboard/information");
@@ -24,7 +29,7 @@ const SignInWithGoogle = () => {
       console.error(error);
       setError(true);
     } finally {
-      setLoading(false); // Stop loading after process
+      // setLoading(false); // Stop loading after process
     }
   };
 
@@ -36,7 +41,7 @@ const SignInWithGoogle = () => {
       email: user.email,
     });
     const userProfileData = {
-      username: username,
+      username: user.displayName,
       id: user.uid,
       email: user.email,
     };

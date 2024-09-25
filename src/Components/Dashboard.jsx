@@ -241,7 +241,7 @@ const Dashboard = () => {
             <span className="text-white">
               Welcome
               <span className="font-bold text-gray-200 text-xl  ">
-                {user.userName}
+                {user.username}
               </span>
             </span>
             <img src={userAvatar} alt="" />

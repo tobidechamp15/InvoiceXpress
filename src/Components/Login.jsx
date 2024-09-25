@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import logo from "../assets/logo.svg";
-import google from "../assets/google.svg";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  GoogleAuthProvider,
-  getAuth,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app, db } from "./firebase/config";
 import { doc, getDoc } from "firebase/firestore";
 import { useUser } from "../context/UserContext";
