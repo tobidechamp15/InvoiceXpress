@@ -84,10 +84,13 @@ const Login = () => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
+      const loggedInUserId = user.uid;
+      localStorage.setItem("userId", loggedInUserId);
       console.log(user);
       saveUser(user);
-      console.log(token);
       // navigate("/dashboard/information");
+      console.log(token);
+      navigate("/dashboard/information");
     } catch (error) {
       console.error(error);
       setError(true);

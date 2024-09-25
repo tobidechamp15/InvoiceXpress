@@ -30,6 +30,7 @@ const Dashboard = () => {
       if (userDoc.exists()) {
         const userData = userDoc.data();
         setUser(userData); // Update the user state with the fetched data
+        console.log(userData);
         return userData; // Optional: return the data if needed
       } else {
         console.log("No such document!");
@@ -41,7 +42,7 @@ const Dashboard = () => {
 
   // Example usage
   useEffect(() => {
-    const userId = localStorage.getItem("userID");
+    const userId = localStorage.getItem("userId");
     if (userId) {
       fetchUserProfile(userId);
     }
