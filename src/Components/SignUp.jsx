@@ -135,7 +135,7 @@ const SignUp = () => {
           </button>
         </form>
         <div className="md:my-[60px] my-4 text-gray-600">
-          <span className="suggest-des text-xs">
+          <span className=" text-md ">
             Already have an account?
             <Link
               to="/login"

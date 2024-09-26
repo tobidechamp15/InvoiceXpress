@@ -2,17 +2,17 @@ import React from "react";
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getAuth, signOut } from "firebase/auth"; // Import Firebase auth
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const Logout = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const handleLogOut = () => {
     const auth = getAuth();
     signOut(auth)
       .then(() => {
         // Sign-out successful, you can redirect the user
         console.log("Logged out successfully");
-        navigate("/");
+        localStorage.removeItem("userId");
       })
       .catch((error) => {
         // Handle error if sign-out fails
