@@ -2,10 +2,10 @@ import React from "react";
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getAuth, signOut } from "firebase/auth"; // Import Firebase auth
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Logout = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const handleLogOut = () => {
     const auth = getAuth();
     signOut(auth)
@@ -13,6 +13,7 @@ const Logout = () => {
         // Sign-out successful, you can redirect the user
         console.log("Logged out successfully");
         localStorage.removeItem("userId");
+        navigate("/");
       })
       .catch((error) => {
         // Handle error if sign-out fails

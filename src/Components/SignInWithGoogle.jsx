@@ -27,7 +27,7 @@ const SignInWithGoogle = () => {
       createUserProfile(user);
     } catch (error) {
       console.error(error);
-      setError(true);
+      // setError(true);
     } finally {
       // setLoading(false); // Stop loading after process
     }

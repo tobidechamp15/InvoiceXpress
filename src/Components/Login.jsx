@@ -83,7 +83,7 @@ const Login = () => {
   //     localStorage.setItem("userId", loggedInUserId);
   //     console.log(user);
   //     saveUser(user);
-  //     // navigate("/dashboard/information");
+  //     navigate("/dashboard/information");
   //     console.log(token);
   //     navigate("/dashboard/information");
   //   } catch (error) {

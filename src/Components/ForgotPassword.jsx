@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import logo from "../assets/logo.svg";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "./firebase/config";
 import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {
@@ -9,9 +11,15 @@ const ForgotPassword = () => {
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError(false);
+    console.log("error message");
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className="flex w-full xsm:h-screen">
