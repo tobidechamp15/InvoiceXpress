@@ -1,6 +1,9 @@
 import React from "react";
 import { useState } from "react";
 
+import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
+import { db } from "./firebase/config";
+
 const AddProducts = () => {
   const [productName, setProductName] = useState("");
   const [productID, setProductID] = useState("");
@@ -27,18 +30,71 @@ const AddProducts = () => {
   const handleQuantity = (e) => {
     setQuantity(e.target.value);
   };
-  const data = {
-    productName,
-    productID,
-    description,
-    quantity,
-    price,
-  };
-  console.log(data);
-  const handleCreateProducts = (e) => {
+  const handleCreateProducts = async (e) => {
     e.preventDefault();
-    // console.log(data);
+
+    // Product data to be added
+    const data = {
+      userID: localStorage.getItem("userID"), // Get userID from local storage
+      productID,
+      productName,
+      description,
+      quantity: parseInt(quantity, 10), // Ensure quantity is stored as a number
+      price: parseFloat(price), // Ensure price is stored as a float
+      createdAt: new Date(), // Add timestamp for product creation
+    };
+
+    // Validate userID
+    if (!data.userID) {
+      setErrorMessage("User not authenticated. Please log in.");
+      return;
+    }
+
+    try {
+      // Reference to the products collection
+      const productsRef = collection(
+        db,
+        "products",
+        data.userID,
+        "userProducts"
+      );
+
+      // Query to check for duplicate productID for the same user
+      const q = query(
+        productsRef,
+        where("userID", "==", data.userID),
+        where("productID", "==", data.productID)
+      );
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        // If a duplicate productID is found for the user, alert them
+        setErrorMessage(
+          `A product with ID "${data.productID}" already exists for this user.`
+        );
+        return;
+      }
+
+      // Add the new product to the Firestore collection
+      await addDoc(productsRef, data);
+
+      // Success feedback
+      setErrorMessage(null); // Clear any previous error messages
+      alert("Product added successfully!"); // Optionally replace with toast notifications
+      console.log("Product successfully added:", data);
+
+      // Reset the form fields
+      setProductName("");
+      setProductID("");
+      setDescription("");
+      setQuantity("");
+      setPrice("");
+    } catch (err) {
+      console.error("Error adding product:", err);
+      setErrorMessage("Failed to add product. Please try again.");
+    }
   };
+
   const handleFormChange = () => {
     setErrorMessage(null);
   };
