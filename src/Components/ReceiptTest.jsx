@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import CustomerInfo from "./CustomerInfo";
 import Receipt from "./Receipt";
+import { doc, getDoc } from "firebase/firestore";
+import { db, userID } from "./firebase/config";
 
 const ReceiptTest = () => {
   const [customerName, setCustomerName] = useState("");
@@ -12,9 +14,9 @@ const ReceiptTest = () => {
   const [amountPaid, setAmountPaid] = useState("");
   const [products, setProducts] = useState([]);
   const [productInput, setProductInput] = useState({ id: "", quantity: "" });
-  const [showInvoice, setShowInvoice] = useState(false); // Changed to boolean
+  const [showInvoice, setShowInvoice] = useState(false);
   const [invoiceData, setInvoiceData] = useState({});
-  const [loading, setLoading] = useState(false); // Loading state for async operations
+  const [loading, setLoading] = useState(false);
 
   // Handle input changes for product details
   const handleInputChange = (e) => {
@@ -23,11 +25,25 @@ const ReceiptTest = () => {
   };
 
   // Fetch product details by product ID
-  const fetchProduct = async () => {
-    setLoading(true); // Set loading state to true before making API call
-    setProducts("p");
-    setShowInvoice(true);
-    setInvoiceData("l");
+  const fetchProductByID = async (productID) => {
+    try {
+      setLoading(true); // Set loading state before API call
+      const productRef = doc(db, "products", userID, "userProducts", productID);
+      const productSnapshot = await getDoc(productRef);
+
+      if (productSnapshot.exists()) {
+        const product = { id: productSnapshot.id, ...productSnapshot.data() };
+        return product;
+      } else {
+        console.error("No such product found!");
+        return null;
+      }
+    } catch (err) {
+      console.error("Error fetching product by ID:", err);
+      throw err;
+    } finally {
+      setLoading(false); // Ensure loading state is reset
+    }
   };
 
   // Handle customer information change
@@ -60,12 +76,28 @@ const ReceiptTest = () => {
   };
 
   // Handle form submission to add products
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (productInput.id.trim() !== "" && productInput.quantity.trim() !== "") {
-      fetchProduct();
-    } else {
+    const { id, quantity } = productInput;
+
+    if (!id.trim() || !quantity.trim()) {
       alert("Please enter both product ID and quantity.");
+      return;
+    }
+
+    try {
+      const product = await fetchProductByID(id);
+      if (product) {
+        setProducts((prevProducts) => [
+          ...prevProducts,
+          { ...product, quantity: parseInt(quantity, 10) },
+        ]);
+        setProductInput({ id: "", quantity: "" }); // Reset form inputs
+      } else {
+        alert("Product not found!");
+      }
+    } catch {
+      alert("Failed to fetch product. Please try again.");
     }
   };
 
@@ -96,7 +128,8 @@ const ReceiptTest = () => {
       },
       items,
     });
-    console.log(data);
+    setInvoiceData(data); // Set invoice data
+    setShowInvoice(true); // Show the invoice component
   };
 
   return (
@@ -105,7 +138,6 @@ const ReceiptTest = () => {
         <Receipt invoiceData={invoiceData} />
       ) : (
         <div className="container mx-auto text-white my-4 flex-grow">
-          {/* Header */}
           <div className="flex justify-between items-center md:mx-[24px]">
             <span className="nav-title">Generate Receipt</span>
             <span
@@ -116,23 +148,20 @@ const ReceiptTest = () => {
             </span>
           </div>
 
-          {/* Customer Info Component */}
           <CustomerInfo onChange={handleCustomerInfoChange} />
 
-          {/* Product Form */}
           <div className="flex flex-col w-full justify-center items-center mt-6">
             <form
               onSubmit={handleSubmit}
               className="flex flex-wrap gap-4 justify-center items-center w-full md:w-[75%]"
             >
-              {/* Product ID Field */}
               <div className="flex flex-col gap-1 items-start w-full md:w-[196px]">
                 <label htmlFor="productId" className="text-sm text-white">
                   Enter product ID:
                 </label>
                 <input
                   id="productId"
-                  type="number"
+                  type="text"
                   className="form-control input-text w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
                   name="id"
                   value={productInput.id}
@@ -141,7 +170,6 @@ const ReceiptTest = () => {
                 />
               </div>
 
-              {/* Quantity Field */}
               <div className="flex flex-col gap-1 items-start w-full md:w-[196px]">
                 <label htmlFor="quantity" className="text-sm text-white">
                   Enter quantity:
@@ -157,7 +185,6 @@ const ReceiptTest = () => {
                 />
               </div>
 
-              {/* Submit Button */}
               <button
                 type="submit"
                 className="btn btn-primary bg-blue-500 text-white rounded-lg px-4 py-2 w-full md:w-[96px] hover:bg-blue-600 transition duration-200"
@@ -166,7 +193,6 @@ const ReceiptTest = () => {
               </button>
             </form>
 
-            {/* Product List */}
             <ul className="mt-6 w-full md:w-[75%] bg-gray-50 border border-gray-200 rounded-lg p-4">
               {products.length > 0 ? (
                 products.map((product, index) => (
@@ -192,7 +218,6 @@ const ReceiptTest = () => {
               )}
             </ul>
 
-            {/* Total Amount */}
             <input
               className="form-control bg-gray-100 border rounded-lg px-3 py-2 text-sm mt-4 md:w-[196px] focus:outline-none focus:ring-2 focus:ring-blue-400"
               value={calculateTotalAmount()}
