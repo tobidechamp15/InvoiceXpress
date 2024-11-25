@@ -21,9 +21,9 @@ export const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 export const auth = getAuth(app);
 const db = getFirestore(app);
-const userId = localStorage.getItem("userId");
+const userID = localStorage.getItem("userID");
 export const googleProvider = new GoogleAuthProvider();
 
 export { analytics };
 export { db };
-export { userId };
+export { userID };

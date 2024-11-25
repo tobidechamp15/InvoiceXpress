@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
+import { setDoc, getDoc, doc } from "firebase/firestore";
 import { db } from "./firebase/config";
 
 const AddProducts = () => {
@@ -36,9 +36,9 @@ const AddProducts = () => {
     // Product data to be added
     const data = {
       userID: localStorage.getItem("userID"), // Get userID from local storage
-      productID,
       productName,
       description,
+      productID,
       quantity: parseInt(quantity, 10), // Ensure quantity is stored as a number
       price: parseFloat(price), // Ensure price is stored as a float
       createdAt: new Date(), // Add timestamp for product creation
@@ -51,32 +51,27 @@ const AddProducts = () => {
     }
 
     try {
-      // Reference to the products collection
-      const productsRef = collection(
+      // Reference to the specific product document using productID
+      const productRef = doc(
         db,
         "products",
         data.userID,
-        "userProducts"
+        "userProducts",
+        productID
       );
 
-      // Query to check for duplicate productID for the same user
-      const q = query(
-        productsRef,
-        where("userID", "==", data.userID),
-        where("productID", "==", data.productID)
-      );
-      const querySnapshot = await getDocs(q);
+      // Check if a product with the same ID already exists
+      const existingProduct = await getDoc(productRef);
 
-      if (!querySnapshot.empty) {
-        // If a duplicate productID is found for the user, alert them
+      if (existingProduct.exists()) {
         setErrorMessage(
-          `A product with ID "${data.productID}" already exists for this user.`
+          `A product with ID "${productID}" already exists for this user.`
         );
         return;
       }
 
-      // Add the new product to the Firestore collection
-      await addDoc(productsRef, data);
+      // Add the new product to Firestore
+      await setDoc(productRef, data);
 
       // Success feedback
       setErrorMessage(null); // Clear any previous error messages
@@ -139,7 +134,7 @@ const AddProducts = () => {
           <div className=" flex-col flex gap-4 items-start w-full">
             <span className="input-name">Product ID</span>
             <input
-              type="number"
+              type="text"
               className="form-control input-text"
               value={productID}
               onChange={handleProductID}
